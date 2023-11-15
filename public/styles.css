@@ -1,0 +1,71 @@
+*{
+    padding: 0%;
+    margin: 0
+    ;
+}
+
+/* NavBar styles */
+.navbar {
+    background-color: #333; /* Background color */
+    color: #fff; /* Text color */
+    padding: 10px 0; /* Top and bottom padding */
+    height: 20px; /* Adjust the height of your navbar */
+    position: fixed; /* Fixed position at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1; 
+  }
+  
+  /* NavBar ul styles */
+  .navbar ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Display list items in a row */
+    justify-content: space-around; /* Distribute items evenly horizontally */
+  }
+  
+  /* NavBar li styles */
+  .navbar li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* NavBar a styles */
+  .navbar a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #fff; /* Text color for links */
+    font-weight: bold; /* Make the text bold */
+    transition: color 0.2s; /* Smooth color transition on hover */
+  }
+  
+  /* NavBar a:hover styles */
+  .navbar a:hover {
+    color: #ff6600; /* Text color on hover */
+  }
+  /* Scrolling container styles */
+/* Scrolling container styles */
+/* Scrolling container styles */
+/* Scrolling container styles */
+.scroll-container {
+    margin-top: 100px;
+    width: 300px; /* Set the width of the container */
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    overflow: auto; /* Enable scrolling when content overflows */
+    border: 1px solid #ccc; /* Add a border for styling */
+  
+    /* Center the scrolling container both horizontally and vertically */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Content inside the scrolling container */
+  .scroll-content {
+    padding: 10px; /* Add some padding to the content */
+  }
+  
+  
+  
