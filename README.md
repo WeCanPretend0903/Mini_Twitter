@@ -70,51 +70,61 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ### Functions to implement:
-Requirement 1
-Showcase/update trendy post
-Make post trending
-Showcase/update trendy user
-Make user trending
-Surfer sign up
-Choose corporate or ordinary user
-Requirement 2
-Account sign in
-Acceptance/Rejection
-Send temp password to user’s email
-Change password
-Change username
-Deposit money/Generate currency
-Requirement 3
-Content suggesting algorithm
-Requirement 4
-Edit profile
-Create post
-Comment on post
-Reporting Post/User
-Warn User
-Requirement 5
-Count words for the post
-Billing system for over 20 words
-Add video/photo to post
-Warning for insufficient funds
-Redirect to the payment page
-Requirement 6
-Dispute warning with SU
-Remove warning
-Compensation of 3 likes
-Pay fine
-Remove user
-Demote from trendy user
-Requirement 7
-Search by images/videos
-Search by likes/dislikes
-Search by author/keywords
-Requirement 8
-Post ads
-Post job postings
-Payment to system
-Requirement 9
-Penalty for unauthorized job
-Requirement 10
-Toggle the Dark mode button
+Requirement 1:\
+Showcase/update trendy post\
+Make post trending\
+Showcase/update trendy user\
+Make user trending\
+Surfer sign up\
+Choose corporate or ordinary user\
+\
+Requirement 2:\
+Account sign in\
+Acceptance/Rejection\
+Send temp password to user’s email\
+Change password\
+Change username\
+Deposit money/Generate currency\
+\
+Requirement 3:\
+Content suggesting algorithm\
+\
+Requirement 4:\
+Edit profile\
+Create post\
+Comment on post\
+Reporting Post/User\
+Warn User\
+\
+Requirement 5:\
+Count words for the post\
+Billing system for over 20 words\
+Add video/photo to post\
+Warning for insufficient funds\
+Redirect to the payment page\
+\
+Requirement 6:\
+Dispute warning with SU\
+Remove warning\
+Compensation of 3 likes\
+Pay fine\
+Remove user\
+Demote from trendy user\
+\
+Requirement 7:\
+Search by images/videos\
+Search by likes/dislikes\
+Search by author/keywords\
+\
+Requirement 8:\
+Post ads\
+Post job postings\
+Payment to system\
+\
+Requirement 9:\
+Penalty for unauthorized job\
+\
+Requirement 10\
+Toggle the Dark mode button\
+\
 More to come...
