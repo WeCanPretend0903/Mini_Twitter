@@ -1,21 +1,21 @@
 import React from "react";
-import logo from "../img/logo.png";
+import logo from "../Assets/logo.png";
 function NavBar() {
   return (
     <div className="navbar">
       <img src={logo} alt="logo" className="logo"></img>
       <ul className="selection">
         <li>
-          <a href="/home">Home</a>
+          <a href="/Main/home">Home</a>
         </li>
         <li>
-          <a href="/friends">Following</a>
+          <a href="/Main/friends">Following</a>
         </li>
         <li>
-          <a href="/explore">Explore</a>
+          <a href="/Main/explore">Explore</a>
         </li>
         <li>
-          <a href="/notifications">Notifications</a>
+          <a href="/Main/notifications">Notifications</a>
         </li>
       </ul>
     </div>
@@ -23,3 +23,5 @@ function NavBar() {
 }
 
 export default NavBar;
+
+
