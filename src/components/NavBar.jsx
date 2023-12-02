@@ -1,11 +1,11 @@
 import React from "react";
-import logo from "../img/logo.png";
+import logo from "../Assets/logo.png";
 function NavBar() {
   return (
     <div className="navbar">
       <img src={logo} alt="logo" className="logo"></img>
       <ul className="selection">
-        <li>
+        <li>  
           <a href="/home">Home</a>
         </li>
         <li>
