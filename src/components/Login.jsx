@@ -6,7 +6,7 @@ import { Formik, Form } from 'formik';
 import { TextInput } from '../components/FormLib';
 import * as Yup from 'yup';
 //icons
-import {FiMail, FiLock} from 'react-icons/fi';
+import {FiMail, FiLock, FiUser} from 'react-icons/fi';
 import { ThreeCircles as Loader } from 'react-loader-spinner';
 
 //authservice
@@ -22,17 +22,19 @@ const Login = ({loginUser}) => {
                 <Formik
                    initialValues={{
                         email: "",
+                        username: "",
                         password: "",
                    }}
                    validationSchema={
                     Yup.object({
-                        email: Yup.string().email("Invalid email address")
-                        .required("Required"),
+                        email: Yup.string().email("Invalid email address").required("Required"),
+                        username: Yup.string().matches(/^[a-zA-Z0-9_]+$/, "Invalid User Name").required("Required"),
                         password: Yup.string()
-                        .min(6, "Password is too short")
-                        .max(20, "Password is too long")
-                        .required("Required"),
-                    })}
+                          .min(6, "Password is too short")
+                          .max(20, "Password is too long")
+                          .required("Required"),
+                      })
+                      }
                    onSubmit={(values, {setSubmitting, setFieldError}) => {
                         console.log(values);
                         loginUser(values, history, setFieldError, setSubmitting);
@@ -46,6 +48,13 @@ const Login = ({loginUser}) => {
                                label="Email Address"
                                placeholder="Email Address..."
                                icon={<FiMail/>}
+                            />
+                            <TextInput 
+                               name="username"
+                               type="text"
+                               label="User Name"
+                               placeholder="UserName..."
+                               icon={<FiUser/>}
                             />
                             <TextInput 
                                name="password"

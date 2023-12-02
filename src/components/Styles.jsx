@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import background from '../Assets/bg.png';
 
 import {Link} from 'react-router-dom';
@@ -32,16 +31,19 @@ export const StyledTitle = styled.h2`
      color: ${(props) => props.color ? props.color : colors.primary};
      padding; 5px;
      margin-bottom: 20px;
+     font-family: 'Arial', sans-serif;
 
 `;
 
 export const StyledSubTitle = styled.p`
-     font-size: ${(props) => props.size}px;
-     text-align: center;
-     color: ${(props) => props.color ? props.color : colors.primary};
-     padding; 5px;
-     margin-bottom: 25px;
+  font-size: ${(props) => props.size}px;
+  text-align: center;
+  color: ${(props) => props.color ? props.color : colors.primary};
+  padding: 5px;
+  margin-bottom: 25px;
+  font-family: 'Arial', sans-serif;
 `;
+
 
 export const Avatar = styled.div`
      width: 85px;
@@ -66,6 +68,7 @@ export const StyledButton = styled(Link)`
      text-align: center;
      transition: ease-in-out 0.3s;
      outline: 0;
+     font-family: 'Arial', sans-serif;
 
 
      &:hover{
@@ -80,6 +83,7 @@ export const ButtonGroup = styled.div`
       justify-content: space-around;
       flex-direction: row;
       margin-top: 25px;
+      
 `;
 
 //Input
@@ -96,8 +100,9 @@ export const StyledTextInput = styled.input`
       display: block;
       margin: 5px auto 10px auto;
       transition: ease-in-out 0.3s;
+      
 
-      ${(props) => props.invalid && `background-color: ${colors.red}; color: ${colors.primary};`}
+      ${(props) => props.invalid && `background-color: ${colors.light1}; color: ${colors.primary};`}
 
       &:focus {
         background-color: ${colors.dark2};
@@ -110,6 +115,7 @@ export const StyledLabel = styled.p`
       text-align: left;
       font-size: 13px;
       font-weight: bold;
+      font-family: 'Arial', sans-serif;
 
 `;
 
@@ -170,7 +176,7 @@ export const StyledIcon = styled.p`
        color: ${colors.dark1};
        position: absolute;
        font-size: 20px;
-       top: 35px;
+       top: 24px;
        ${(props) => props.right && `right: 15px; `}
        ${(props) => !props.right && `left: 15px;`}
 

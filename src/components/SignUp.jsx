@@ -2,7 +2,7 @@ import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, 
 
 import Logo from '../Assets/logo.png';
 
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { TextInput } from '../components/FormLib';
 import * as Yup from 'yup';
 //icons
@@ -22,22 +22,19 @@ const SignUp = ({signupUser}) => {
                 <Formik
                    initialValues={{
                         email: "",
+                        username: "",
                         password: "",
                         repeatPassword: "",
-                        userName: "",
+                        userType: "'ordinary'", 
                    }}
                    validationSchema={
                     Yup.object({
-                        email: Yup.string().email("Invalid email address")
-                        .required("Required"),
-                        password: Yup.string()
-                        .min(6, "Password is too short")
-                        .max(20, "Password is too long")
-                        .required("Required"),
-                        userName: Yup.string().required("Required"),
-                        repeatPassword: Yup.string().required("Required").oneOf([Yup.ref("password")], "Password Must Match")
-
-                    })}
+                        email: Yup.string().email("Invalid email address").required("Required"),
+                        password: Yup.string().min(6, "Password is too short").max(20, "Password is too long").required("Required"),
+                        username: Yup.string().required("Required"),
+                        repeatPassword: Yup.string().required("Required").oneOf([Yup.ref("password")], "Password Must Match"),
+                        userType: Yup.string().required('Required'),
+                      })}
                    onSubmit={(values, {setSubmitting, setFieldError}) => {
                         console.log(values);
                         signupUser(values,history, setFieldError, setSubmitting )
@@ -73,6 +70,17 @@ const SignUp = ({signupUser}) => {
                                placeholder="password..."
                                icon={<FiLock/>}
                             />
+                            <StyledLabel>User Type:</StyledLabel>
+                            <div>
+                            <label>
+                            <Field type="radio" name="userType" value="ordinary" />
+                               Ordinary User
+                            </label>
+                            <label>
+                            <Field type="radio" name="userType" value="corporate" />
+                               Corporate User
+                            </label>
+                            </div>
                             <ButtonGroup>
                                 {!isSubmitting && (
                                 <StyledFormButton

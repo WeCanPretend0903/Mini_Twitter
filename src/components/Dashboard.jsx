@@ -18,7 +18,7 @@ const Dashboard = ()=> {
            }}>
             <Avatar image={Logo}/>
             </div> 
-            <StyledFormArea bg={colors.dark2}>
+            <StyledFormArea bg ="transparent">
                 <StyledTitle size={65}> Welcome To SnapTweet</StyledTitle>
                 <ButtonGroup><StyledButton to="#">Logout</StyledButton></ButtonGroup>
             </StyledFormArea>
