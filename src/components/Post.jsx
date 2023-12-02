@@ -3,15 +3,22 @@ import profile from '../img/profile.png'
 import './Post.css';
 
 const Post = ({ onSubmit }) => {
+  // User data
   const user = {
     username: "Kevin Zheng",
     profilepic: profile,
   };
-  // User inputs
   const [keywords, setKeywords] = useState(['', '', '']);
   const [content, setContent] = useState('');
   const [mediaFile, setMediaFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [likes, setLike] = useState(0);
+  const [likeClicked, setLiked] = useState(false);
+  const [dislikes, setDislike] = useState(0);
+  const [dislikeClicked, setDisliked] = useState(false);
+  const [shares, setShares] = useState(0);
+  const [shareClicked, setShared] = useState(false);
+  const [reportClicked, setReported] = useState(false);
   // Handle keywords
   const handleKeywords = (index, event) => {
     const newWords = [...keywords];
@@ -68,6 +75,27 @@ const Post = ({ onSubmit }) => {
     };
     onSubmit(newPost)
   };
+  // handle like button
+  const handleLikeClick = () => {
+    setLiked((prev) => !prev);
+    setLike((prevCount) => (likeClicked ? prevCount - 1 : prevCount + 1))
+  };
+   // handle dislike button
+   const handleDislikeClick = () => {
+    setDisliked((prev) => !prev);
+    setDislike((prevCount) => (dislikeClicked ? prevCount - 1 : prevCount + 1))
+  };
+   // handle share button
+   const handleShareClick = () => {
+    setShared((prev) => !prev);
+    setShares((prevCount) => (shareClicked ? prevCount - 1 : prevCount + 1))
+    // recreate post with extra comment
+  };
+  // handle report button
+  const handleReportClick = () => {
+    setReported((prev) => !prev);
+    // add warning
+  };
   return (
     <div className="post-container">
       <div className="post-header">
@@ -106,13 +134,13 @@ const Post = ({ onSubmit }) => {
       <div className="post-content">
        <div className="content-section">
           <textarea
-            placeHolder="Write your content here"
+            placeholder="Write your content here"
             value={content}
             onChange={handleContent}
           />
        </div>
        <div className="media-section">
-          <button id="media-button" onClick={openFile}>Upload Image/Video</button>
+          <button id="add-button" onClick={openFile}>Upload Image/Video</button>
           <input
             id="fileInput"
             type="file"
@@ -142,8 +170,46 @@ const Post = ({ onSubmit }) => {
               )}
             </div>
           )}
-          <button id="media-button" onClick={removeFile}>Remove Uploaded File</button>
+          <button id="remove-button" onClick={removeFile}>Remove Uploaded File</button>
        </div>
+      </div>
+      <div className="post-statistics">
+        <div className="like">
+          <button
+            id="like-button"
+            className={likeClicked ? "clicked" : ""}
+            onClick={handleLikeClick}
+          >
+            Like : {likes}
+          </button>
+        </div>
+        <div className="dislike">
+        <button
+          id="dislike-button"
+          className={dislikeClicked ? "clicked" : ""}
+          onClick={handleDislikeClick}
+        >
+          Disike : {dislikes}
+        </button>
+        </div>
+        <div className="share">
+          <button
+            id="share-button"
+            className={shareClicked ? "clicked" : ""}
+            onClick={handleShareClick}
+          >
+            Share : {shares}
+          </button>
+        </div>
+        <div className="report">
+          <button
+            id="report-button"
+            className={reportClicked ? "clicked" : ""}
+            onClick={handleReportClick}
+          >
+            Report
+          </button>
+        </div>
       </div>
     </div>
   );

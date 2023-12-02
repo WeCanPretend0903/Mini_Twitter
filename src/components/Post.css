@@ -92,7 +92,14 @@
     display: flex;
     flex-direction: row;
 }
-#media-button {
+#add-button {
+    border: 10px solid snow;
+    background-color: snow;
+    border-radius: 10px;
+    padding: 3px;
+    margin: 10px;
+}
+#remove-button {
     border: 10px solid snow;
     background-color: snow;
     border-radius: 10px;
@@ -121,4 +128,57 @@ button:hover {
     border-radius: 10px;
     padding: 3px;
     margin: 10px;
+}
+.post-statistics {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#like-button {
+    border: 10px solid snow;
+    background-color: snow;
+    border-radius: 10px;
+    padding: 3px;
+    margin: 10px;
+}
+#like-button.clicked {
+    background-color: green;
+    border: 10px solid green;
+    font-weight: bold;
+}
+#dislike-button {
+    border: 10px solid snow;
+    background-color: snow;
+    border-radius: 10px;
+    padding: 3px;
+    margin: 10px;
+}
+#dislike-button.clicked {
+    background-color: yellow;
+    border: 10px solid yellow;
+    font-weight: bold;
+}
+#share-button {
+    border: 10px solid snow;
+    background-color: snow;
+    border-radius: 10px;
+    padding: 3px;
+    margin: 10px;
+}
+#share-button.clicked {
+    background-color: lightblue;
+    border: 10px solid lightblue;
+    font-weight: bold;
+}
+#report-button {
+    border: 10px solid snow;
+    background-color: snow;
+    border-radius: 10px;
+    padding: 3px;
+    margin: 10px;
+}
+#report-button.clicked {
+    background-color: red;
+    border: 10px solid red;
+    font-weight: bold;
 }
