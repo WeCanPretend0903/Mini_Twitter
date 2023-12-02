@@ -6,24 +6,17 @@ const HomePage = () => {
   const [posts, setPosts] = useState([]);
   // add new post to page
   const addPost = (newPost) => {
-    setPosts([...posts, newPost]);
+    setPosts([newPost, ...posts]);
   };
   return (
     <div className="home-page">
       <div className="posts-section">
-        <Post onSubmit={addPost} />
+        <h2 id="section-heading">Posts</h2>
         {posts.map((post, index) => (
           <Post key={index} {...post} />
         ))}
+        <Post onSubmitCallback={addPost} />
       </div>
-      {/*
-      <div className="trending-section">
-        <h2>Trending Posts</h2>
-          {getTrendingPosts().map((trendingPost, index) => (
-            <Post key={index} {...trendingPost} />
-        ))}
-      </div>
-          */}
     </div>
   );
 };

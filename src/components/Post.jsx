@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import profile from '../img/profile.png'
 import './Post.css';
 
-const Post = ({ onSubmit }) => {
+const Post = ({ onSubmitCallback }) => {
   // User data
   const user = {
     username: "Kevin Zheng",
@@ -19,6 +19,7 @@ const Post = ({ onSubmit }) => {
   const [shares, setShares] = useState(0);
   const [shareClicked, setShared] = useState(false);
   const [reportClicked, setReported] = useState(false);
+  const [postState, setPostState] = useState("editing");
   // Handle keywords
   const handleKeywords = (index, event) => {
     const newWords = [...keywords];
@@ -65,15 +66,17 @@ const Post = ({ onSubmit }) => {
   }
   // post message
   const postMessage = () => {
-    const newPost = {
-      // User data
-        user,
-        keywords,
-        content,
-        mediaFile,
-        errorMessage
-    };
-    onSubmit(newPost)
+    setPostState("posted");
+    const postData = {
+      user,
+      keywords,
+      content,
+      mediaFile,
+      likes,
+      dislikes,
+      shares,
+    }
+    onSubmitCallback(postData);
   };
   // handle like button
   const handleLikeClick = () => {
@@ -113,7 +116,9 @@ const Post = ({ onSubmit }) => {
               <h4>{getTime()}</h4>
             </div>
             <div>
-              <button id="post-button" onClick={postMessage}>Post Message</button>
+              {postState === "editing" && (
+                <button id="post-button" onClick={postMessage}>Post Message</button>
+              )}
             </div>
           </div>
         </div>
@@ -134,13 +139,15 @@ const Post = ({ onSubmit }) => {
       <div className="post-content">
        <div className="content-section">
           <textarea
-            placeholder="Write your content here"
+            placeholder="Share your thoughts"
             value={content}
             onChange={handleContent}
           />
        </div>
        <div className="media-section">
-          <button id="add-button" onClick={openFile}>Upload Image/Video</button>
+          {postState === "editing" && (
+            <>
+            <button id="add-button" onClick={openFile}>Upload Image/Video</button>
           <input
             id="fileInput"
             type="file"
@@ -148,7 +155,11 @@ const Post = ({ onSubmit }) => {
             onChange={handleMediaFile}
             style={{ display: "none" }}
           />
-          {errorMessage && <p id="error-message">{errorMessage}</p>}
+          </>
+        )}
+          {postState === "editing" && errorMessage && (
+            <p id="error-message">{errorMessage}</p>
+          )}
           {mediaFile && (
             <div className="media-preview">
               {mediaFile.type.startsWith("video/") ? (
@@ -170,46 +181,52 @@ const Post = ({ onSubmit }) => {
               )}
             </div>
           )}
-          <button id="remove-button" onClick={removeFile}>Remove Uploaded File</button>
+          {postState === "editing" && (
+            <button id="remove-button" onClick={removeFile}>Remove Uploaded File</button>
+          )}
        </div>
       </div>
       <div className="post-statistics">
-        <div className="like">
-          <button
-            id="like-button"
-            className={likeClicked ? "clicked" : ""}
-            onClick={handleLikeClick}
-          >
-            Like : {likes}
-          </button>
-        </div>
-        <div className="dislike">
-        <button
-          id="dislike-button"
-          className={dislikeClicked ? "clicked" : ""}
-          onClick={handleDislikeClick}
-        >
-          Disike : {dislikes}
-        </button>
-        </div>
-        <div className="share">
-          <button
-            id="share-button"
-            className={shareClicked ? "clicked" : ""}
-            onClick={handleShareClick}
-          >
-            Share : {shares}
-          </button>
-        </div>
-        <div className="report">
-          <button
-            id="report-button"
-            className={reportClicked ? "clicked" : ""}
-            onClick={handleReportClick}
-          >
-            Report
-          </button>
-        </div>
+        {postState === "posted" && (
+          <>
+            <div className="like">
+            <button
+              id="like-button"
+              className={likeClicked ? "clicked" : ""}
+              onClick={handleLikeClick}
+            >
+              Like : {likes}
+            </button>
+            </div>
+            <div className="dislike">
+            <button
+              id="dislike-button"
+              className={dislikeClicked ? "clicked" : ""}
+              onClick={handleDislikeClick}
+            >
+              Disike : {dislikes}
+            </button>
+            </div>
+            <div className="share">
+              <button
+                id="share-button"
+                className={shareClicked ? "clicked" : ""}
+                onClick={handleShareClick}
+              >
+                Share : {shares}
+              </button>
+            </div>
+            <div className="report">
+              <button
+                id="report-button"
+                className={reportClicked ? "clicked" : ""}
+                onClick={handleReportClick}
+              >
+                Report
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
