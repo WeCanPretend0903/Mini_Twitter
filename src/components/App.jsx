@@ -1,11 +1,11 @@
 import React from "react";
 import NavBar from "./NavBar";
-import Posts from "./Posts";
+import HomePage from "./Home";
 function App() {
   return (
     <div>
       <NavBar />
-      <Posts />
+      <HomePage />
     </div>
   );
 }
