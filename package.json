@@ -8,8 +8,16 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "connect-mongo": "^5.1.0",
     "css-select": "^5.1.0",
+    "express": "^4.18.2",
+    "express-react-views": "^0.11.0",
+    "express-session": "^1.17.3",
     "formik": "^2.4.5",
+    "mongoose": "^8.0.2",
+    "nodemon": "^3.0.2",
     "nth-check": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,7 +35,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "devStart": "nodemon server.js"
   },
   "eslintConfig": {
     "extends": [

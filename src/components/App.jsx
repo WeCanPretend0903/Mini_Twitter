@@ -15,7 +15,7 @@ function App() {
         <Route path="/signup" element={<StyledContainer><Signup /></StyledContainer>}/>
         <Route path="/login" element={<StyledContainer><Login /></StyledContainer>}/>
         <Route path="/dashboard" element={<StyledContainer><Dashboard /></StyledContainer>}/>
-        <Route path="/Mainhome" element={<StyledContainer><MainHome /></StyledContainer>}/>
+        <Route path="" element={<StyledContainer><MainHome /></StyledContainer>}/>
         <Route path="/home" element={
             <div>
               <NavBar />

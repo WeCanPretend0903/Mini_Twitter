@@ -1,5 +1,5 @@
 import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup,StyledFormArea,colors} from "../components/Styles";
-
+import React from 'react';
 import Logo from "../Assets/logo.png";
 const Dashboard = ()=> {
     return(
