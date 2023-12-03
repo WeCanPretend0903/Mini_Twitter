@@ -57,15 +57,22 @@
     border-radius: 10px;
     align-self: right;
 }
-.keyword {
+.keywords {
+    margin: 10px;
     display: inline-block;
-    margin-right: 8px;
-    margin-left: 8px;
-    padding: 4px 8px;
-    background-color: skyblue;
+    align-self: center;
+}
+.keywords input {
+    margin-left: 5px;
+    margin-right: 5px;
     border: 2px solid whitesmoke;
-    border-radius: 8px;
+    background-color: skyblue;
+    border-radius: 10px;
     text-align: center;
+}
+.keywords input::placeholder {
+    text-align: center;
+    color : gray;
 }
 .post-content {
     align-self: center;
@@ -121,57 +128,4 @@ button:hover {
     border-radius: 10px;
     padding: 3px;
     margin: 10px;
-}
-.post-badges {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-#like-button {
-    border: 10px solid snow;
-    background-color: snow;
-    border-radius: 10px;
-    padding: 3px;
-    margin: 10px;
-}
-#like-button.clicked {
-    background-color: green;
-    border: 10px solid green;
-    font-weight: bold;
-}
-#dislike-button {
-    border: 10px solid snow;
-    background-color: snow;
-    border-radius: 10px;
-    padding: 3px;
-    margin: 10px;
-}
-#dislike-button.clicked {
-    background-color: yellow;
-    border: 10px solid yellow;
-    font-weight: bold;
-}
-#share-button {
-    border: 10px solid snow;
-    background-color: snow;
-    border-radius: 10px;
-    padding: 3px;
-    margin: 10px;
-}
-#share-button.clicked {
-    background-color: lightblue;
-    border: 10px solid lightblue;
-    font-weight: bold;
-}
-#report-button {
-    border: 10px solid snow;
-    background-color: snow;
-    border-radius: 10px;
-    padding: 3px;
-    margin: 10px;
-}
-#report-button.clicked {
-    background-color: red;
-    border: 10px solid red;
-    font-weight: bold;
 }
