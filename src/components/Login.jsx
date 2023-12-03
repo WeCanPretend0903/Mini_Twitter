@@ -1,7 +1,7 @@
 import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrghtText} from '../components/Styles';
 
 import Logo from '../Assets/logo.png';
-
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Formik, Form } from 'formik';
 import { TextInput } from '../components/FormLib';
 import * as Yup from 'yup';
@@ -12,8 +12,11 @@ import { ThreeCircles as Loader } from 'react-loader-spinner';
 //authservice
 import {connect} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-const Login = ({loginUser}) => {
+import { useState } from 'react';
+import { auth } from './firebase';
+const Login = () => {
     const history = useNavigate();
+    
     return (
         <div>
             <StyledFormArea>
@@ -22,24 +25,35 @@ const Login = ({loginUser}) => {
                 <Formik
                    initialValues={{
                         email: "",
-                        username: "",
+                        //username: "",
                         password: "",
                    }}
                    validationSchema={
                     Yup.object({
                         email: Yup.string().email("Invalid email address").required("Required"),
-                        username: Yup.string().matches(/^[a-zA-Z0-9_]+$/, "Invalid User Name").required("Required"),
+                        //username: Yup.string().matches(/^[a-zA-Z0-9_]+$/, "Invalid User Name").required("Required"),
                         password: Yup.string()
                           .min(6, "Password is too short")
                           .max(20, "Password is too long")
                           .required("Required"),
                       })
                       }
-                   onSubmit={(values, {setSubmitting, setFieldError}) => {
-                        console.log(values);
-                        loginUser(values, history, setFieldError, setSubmitting);
-                   }}
-                >
+                      onSubmit={async(values, { setSubmitting, setFieldError }) => {
+                        try {
+                            await signInWithEmailAndPassword(auth, values.email, values.password);
+                            // Additional actions after successful login if needed
+                            history('/dashboard');
+                        } catch (error) {
+                            console.error('Login error:', error.message);
+                            if (setFieldError) {
+                                setFieldError('email', 'Login error');
+                            }
+                        } finally {
+                            if (setSubmitting) {
+                                setSubmitting(false); // Only set submitting to false if it's defined
+                            }
+                        }
+                      }}>
                     {({isSubmitting}) => (
                         <Form>
                             <TextInput 
@@ -50,13 +64,6 @@ const Login = ({loginUser}) => {
                                icon={<FiMail/>}
                             />
                             <TextInput 
-                               name="username"
-                               type="text"
-                               label="User Name"
-                               placeholder="UserName..."
-                               icon={<FiUser/>}
-                            />
-                            <TextInput 
                                name="password"
                                type="password"
                                label="Password"
@@ -65,8 +72,8 @@ const Login = ({loginUser}) => {
                             />
                             <ButtonGroup>
                                 {!isSubmitting && (
-                                <StyledFormButton
-                                    type="submit">Login
+                                <StyledFormButton 
+                                     type="submit">Login
                                 </StyledFormButton>
                                 )}
                                 {isSubmitting && (
