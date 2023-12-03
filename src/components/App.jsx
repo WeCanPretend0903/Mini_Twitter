@@ -11,6 +11,7 @@ import { StyledContainer } from './Styles';
 function App() {
   return (
     <Router>
+      <NavBar />
       <Routes>
         <Route path="/signup" element={<StyledContainer><Signup /></StyledContainer>}/>
         <Route path="/login" element={<StyledContainer><Login /></StyledContainer>}/>
