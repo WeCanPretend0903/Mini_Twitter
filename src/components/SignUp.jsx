@@ -50,9 +50,9 @@ const SignUp = ({signupUser}) => {
                                icon={<FiMail/>}
                             />
                             <TextInput 
-                               name="UserName"
+                               name="username"
                                type="text"
-                               label="User Name"
+                               label="UserName"
                                placeholder="JohnDoe12..."
                                icon={<FiUser/>}
                             />
