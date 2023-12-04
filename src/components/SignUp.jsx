@@ -1,7 +1,5 @@
 import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrghtText} from '../components/Styles';
-
 import Logo from '../Assets/logo.png';
-
 import { Formik, Form, Field } from 'formik';
 import { TextInput } from '../components/FormLib';
 import * as Yup from 'yup';
@@ -10,8 +8,10 @@ import {FiMail, FiLock, FiUser} from 'react-icons/fi';
 import { ThreeCircles as Loader } from 'react-loader-spinner';
 
 //authservice
+import {createUserWithEmailAndPassword} from 'firebase/auth';
 import {connect} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import { auth } from './firebase';
 const SignUp = ({signupUser}) => {
     const history = useNavigate();
     return (
@@ -24,7 +24,6 @@ const SignUp = ({signupUser}) => {
                         email: "",
                         username: "",
                         password: "",
-                        repeatPassword: "",
                         userType: "'ordinary'", 
                    }}
                    validationSchema={
@@ -32,14 +31,25 @@ const SignUp = ({signupUser}) => {
                         email: Yup.string().email("Invalid email address").required("Required"),
                         password: Yup.string().min(6, "Password is too short").max(20, "Password is too long").required("Required"),
                         username: Yup.string().required("Required"),
-                        repeatPassword: Yup.string().required("Required").oneOf([Yup.ref("password")], "Password Must Match"),
+                        //repeatPassword: Yup.string().required("Required").oneOf([Yup.ref("password")], "Password Must Match"),
                         userType: Yup.string().required('Required'),
                       })}
-                   onSubmit={(values, {setSubmitting, setFieldError}) => {
-                        console.log(values);
-                        signupUser(values,history, setFieldError, setSubmitting )
-                   }}
-                >
+                      onSubmit={async(values, { setSubmitting, setFieldError }) => {
+                        try {
+                            await createUserWithEmailAndPassword(auth, values.email, values.password);
+                            // Additional actions after successful login if needed
+                            history('/dashboard');
+                        } catch (error) {
+                            console.error('Login error:', error.message);
+                            if (setFieldError) {
+                                setFieldError('email', 'Login error');
+                            }
+                        } finally {
+                            if (setSubmitting) {
+                                setSubmitting(false); // Only set submitting to false if it's defined
+                            }
+                        }
+                      }}>
                     {({isSubmitting}) => (
                         <Form>
                             <TextInput 
@@ -50,9 +60,9 @@ const SignUp = ({signupUser}) => {
                                icon={<FiMail/>}
                             />
                             <TextInput 
-                               name="UserName"
+                               name="username"
                                type="text"
-                               label="User Name"
+                               label="UserName"
                                placeholder="JohnDoe12..."
                                icon={<FiUser/>}
                             />
@@ -63,13 +73,7 @@ const SignUp = ({signupUser}) => {
                                placeholder="password..."
                                icon={<FiLock/>}
                             />
-                            <TextInput 
-                               name="repeatPassword"
-                               type="password"
-                               label="Repeat Password"
-                               placeholder="password..."
-                               icon={<FiLock/>}
-                            />
+
                             <StyledLabel>User Type:</StyledLabel>
                             <div>
                             <label>
