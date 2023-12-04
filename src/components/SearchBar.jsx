@@ -19,7 +19,7 @@ export const SearchBar = ({ setResults }) => {
     return (
         <div className="inputWrapper">
             <FaSearch id="searchIcon" />
-            <input placeholder="Search here..." 
+            <input id="search-input"placeholder="Search here..." 
             value={input}
             onChange={(e) => handleInputChange(e.target.value)} //store the typing inside input variable (存input)
             />

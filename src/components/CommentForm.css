@@ -1,0 +1,26 @@
+.comment-form {
+  margin-top: 5px;
+}
+.comment-form form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+.comment-form textarea {
+  flex: 1;
+  padding: 8px;
+  margin-bottom: 10px;
+  align-self: left;
+  width: 70%;
+}
+.comment-form button {
+  border: 10px solid rgb(106, 106, 206);
+  background-color: rgb(106, 106, 206);
+  border-radius: 10px;
+  align-self: right;
+  width: 30%;
+}
+.comment-form button:hover {
+  cursor: pointer;
+}

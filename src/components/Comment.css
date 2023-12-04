@@ -1,0 +1,19 @@
+.comment-container {
+  padding: 5px;
+  border: 1px solid azure;
+  border-radius: 5px;
+}
+.comment-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment-content {
+  margin-top: 10px;
+}
+#profile-picture {
+  width:35px;
+  height:35px;
+  align-self: left;
+}

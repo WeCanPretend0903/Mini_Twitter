@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import profile from '../img/profile.png'
 import './Post.css';
-import PostBox from './PostBox';
+import CommentBox from './CommentBox';
 
 function Post ({
   username,
@@ -10,6 +9,7 @@ function Post ({
   content,
   mediaFile,
   keywords,
+  postID,
 }) {
   // post data
   const [postData, setPostData] = useState({
@@ -151,6 +151,9 @@ function Post ({
             Report
           </button>
         </div>
+      </div>
+      <div className="post-comments">
+        <CommentBox postID={postID}/>
       </div>
   </div>
   )

@@ -5,9 +5,8 @@ import "./SearchResultsList.css"
 //2.for the user to  click on the result list items
 export const SearchResult = ({ result }) => {
     return (
-        <div className="searchResult"
-            onClick={(e) => alert(`You cliked on ${result.name}`)} //change this to the link to post or user
-        >
+        //change this to the link to post or user
+        <div className="searchResult" onClick={(e) => alert(`You clicked on ${result.name}`)}>
             {result.name}
         </div>
     );
