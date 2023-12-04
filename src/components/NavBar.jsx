@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../img/logo2.png";
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
@@ -17,6 +18,9 @@ function NavBar() {
         </li>
         <li>
           <a href="/notifications">Notifications</a>
+        </li>
+        <li>
+          <Link to="/search">Search</Link>
         </li>
       </ul>
     </div>
