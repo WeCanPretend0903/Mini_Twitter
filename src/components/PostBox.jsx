@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./PostBox.css";
 import profile from '../img/profile.png'
 import profanityData from '../Data/profanity-list.json'; // file obtained from https://github.com/dsojevic/profanity-list/tree/main
+import userData from "../Data/UserData";
 
 function PostBox ({ onSubmit }) {
   // post data
@@ -9,7 +10,7 @@ function PostBox ({ onSubmit }) {
     user: {
       username: "Kevin Zheng",
       profilepic: profile,
-      userType: "Ordinary",
+      userType: "OU",
     },
     keywords: ['', '', ''],
     content: '',
@@ -105,11 +106,11 @@ function PostBox ({ onSubmit }) {
     }
     else {
       const wordCount = countWords();
-      if (data.user.userType == "Ordinary") {
+      if (data.user.userType == "OU") {
         if (wordCount > 20) {
           chargeUser((0.1 * (wordCount - 20)))
         }
-      } else if (data.user.userType === "Corporte") {
+      } else if (data.user.userType === "CU") {
         chargeUser(wordCount);
       }
       const postData = {

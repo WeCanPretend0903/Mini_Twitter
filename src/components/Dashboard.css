@@ -1,8 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-}
 .avatar {
   position: absolute;
   top: 0;
@@ -12,6 +7,14 @@ body {
   padding: 15px;
   display: flex;
   justify-content: flex-start;
+}
+.profile-info {
+  flex: 1;
+  background-color: darkcyan;
+  padding: 10px;
+  border: 3px solid aquamarine;
+  border-radius: 10px;
+  max-width: 70%;
 }
 .form-area {
   background-color: transparent;
@@ -31,19 +34,36 @@ body {
   cursor: pointer;
   margin-right: 10px;
 }
-.profile-info {
-  margin-top: 20px;
-}
 .username {
   font-size: 2em;
-  color: #3498db;
+  color: black;
 }
 .description {
   font-size: 1.2em;
-  color: #333;
 }
 .edit-bio-textarea {
   width: 100%;
   min-height: 100px;
   padding: 8px;
+}
+.user-info {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.balance-info {
+  background-color: darkcyan;
+  padding: 10px;
+  border: 3px solid aquamarine;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#balance {
+  margin-bottom: 10px;
+}
+#deposit-button {
+  margin-top: 10px;
 }
