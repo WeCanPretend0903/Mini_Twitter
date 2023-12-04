@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './Post.css';
 import CommentBox from './CommentBox';
+import profanityData from '../Data/profanity-list.json'; // file obtained from https://github.com/dsojevic/profanity-list/tree/main
 
 function Post ({
   username,
@@ -20,7 +21,29 @@ function Post ({
     shares: 0,
     shareClicked: false,
     reportClicked: false,
+    filteredContent: '',
   });
+  const profanityList = profanityData.map(profanity => ({
+    id: profanity.id,
+    match: profanity.match,
+  }));
+  // handle filter content 
+  const handleFilterContent = () => {
+  const text = content;
+  const words = text.split(/\s+/);
+  const filtered = words.map(word => {
+    const normalizedWord = word.toLowerCase().trim();
+    const isProfanity = profanityList.some(profanity => {
+      const regex = new RegExp(`\\b(${profanity.id}|${profanity.match.replace(/\|/g, '|')})\\b`, 'i');
+      return regex.test(normalizedWord);
+    });
+    return isProfanity ? '*'.repeat(normalizedWord.length) : word;
+  }).join(' ');
+  setPostData(prevData => ({ ...prevData, filteredContent: filtered }));
+  };
+  useEffect(() => {
+    handleFilterContent();
+  }, [content]);
   // handle like button
   const handleLikeClick = () => {
     setPostData((prevData) => ({
@@ -88,7 +111,7 @@ function Post ({
       </div>
       <div className="post-content">
         <div className="content-section">
-          <p>{content}</p>
+          <p>{postData.filteredContent}</p>
         </div>
         <div className="media-section">
           {mediaFile && (

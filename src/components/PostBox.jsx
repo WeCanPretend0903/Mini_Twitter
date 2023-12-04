@@ -8,7 +8,8 @@ function PostBox ({ onSubmit }) {
   const [data, setData] = useState({
     user: {
       username: "Kevin Zheng",
-      profilepic: profile
+      profilepic: profile,
+      userType: "Ordinary",
     },
     keywords: ['', '', ''],
     content: '',
@@ -62,12 +63,12 @@ function PostBox ({ onSubmit }) {
     const formattedTime = date.toLocaleTimeString('en-US', timeOption);
     return `${formattedDate} ${formattedTime}`;
   }
-  // filter bad words
-  const handleBadWords = () => {
+  // count bad words
+  const countBadWords = () => {
     const text = data.content;
     const words = text.split(/\s+/);
     let tabooWordsCount = 0;
-    const filtered = words.map(word => {
+    words.forEach(word => {
       const normalizedWord = word.toLowerCase().trim();
       const isProfanity = profanityList.some(profanity => {
         const regex = new RegExp(`\\b(${profanity.id}|${profanity.match.replace(/\|/g, '|')})\\b`, 'i');
@@ -75,22 +76,42 @@ function PostBox ({ onSubmit }) {
       });
       if (isProfanity) {
         tabooWordsCount += 1;
-        return '*'.repeat(normalizedWord.length)
-      } else {
-        return word;
       }
-    }).join(' ');
-    setData(prevData => ({ ...prevData, content: filtered }));
+    });
     return tabooWordsCount;
+  };
+  // count total words
+  const countWords = () => {
+    let words = data.content.split(/\s+/).filter(word => word.trim() !== ''); 
+    if (data.mediaFile) {
+      if (data.mediaFile.type.startsWith('image/')) {
+        words += 10;
+      } else {
+        words += 15;
+      }
+    }
+    return words;
+  };
+  //
+  const chargeUser = () => {
+    return;
   };
   // post message
   const postMessage = () => {
-    let badWordCount = handleBadWords();
+    let badWordCount = countBadWords();
     if (badWordCount > 2) {
       setData((prevData) => ({ ...prevData, errorMessage: "Bad langauge, sending a warning."}));
       return;
     }
     else {
+      const wordCount = countWords();
+      if (data.user.userType == "Ordinary") {
+        if (wordCount > 20) {
+          chargeUser((0.1 * (wordCount - 20)))
+        }
+      } else if (data.user.userType === "Corporte") {
+        chargeUser(wordCount);
+      }
       const postData = {
         user: data.user,
         keywords: data.keywords,
