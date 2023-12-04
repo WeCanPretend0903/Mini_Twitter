@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup, StyledFormArea } from "../components/Styles";
 import { useNavigate } from 'react-router-dom';
-import Logo from "../Assets/logo.png";
-import profile from '../img/profile.png'
 import { getAuth, signOut, updateProfile } from "firebase/auth";
-import "./Dashboard.css";
-import userData from "../Data/UserData";
+import { onAuthStateChanged } from "firebase/auth";
+import Logo from "../Assets/logo.png";
+import profile from '../img/profile.png';
+import userData from '../Data/UserData.json';
+import './Dashboard.css';
 
 const Dashboard = () => {
   const history = useNavigate();
@@ -39,9 +40,11 @@ const Dashboard = () => {
       console.error('Logout error:', error.message);
     }
   };
+
   const handleEditClick = () => {
     setEditMode(true);
   };
+
   const handleSaveClick = async () => {
     const auth = getAuth();
     await updateProfile(auth.currentUser, {
@@ -50,22 +53,25 @@ const Dashboard = () => {
     });
     setEditMode(false);
   };
+
   const handleMediaFile = (event) => {
     const file = event.target.files[0];
     if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setUser((prevUser) => ({
-            ...prevUser,
-            profilePic: reader.result,
-          }));
-        };
-        reader.readAsDataURL(file);
-      }
-  };  
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUser((prevUser) => ({
+          ...prevUser,
+          profilePic: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const openFile = () => {
     document.getElementById('fileInput').click();
   };
+
   return (
     <div className="dashboard">
       <div className="heading">
@@ -87,13 +93,13 @@ const Dashboard = () => {
         <div className="profile-info">
             <div id="profile-pic">
             <Avatar image={user.profilePic} />
-            </div>
-            <div id="username">
+          </div>
+          <div id="username">
             <StyledTitle>
                 {user.displayName}
             </StyledTitle>
-            </div>
-            {editMode ? (
+          </div>
+          {editMode ? (
             <textarea
                 id="description"
                 className="edit-bio-textarea"
