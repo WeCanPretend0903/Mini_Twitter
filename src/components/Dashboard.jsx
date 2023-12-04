@@ -5,7 +5,7 @@ import Logo from "../Assets/logo.png";
 import profile from '../img/profile.png'
 import { getAuth, signOut, updateProfile } from "firebase/auth";
 import "./Dashboard.css";
-//import userData from "../Data/UserData";
+import userData from "../Data/UserData";
 
 const Dashboard = () => {
   const history = useNavigate();
