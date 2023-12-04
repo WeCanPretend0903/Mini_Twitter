@@ -5,6 +5,7 @@ import MainHome from './Mainhome';
 import Login from './Login';
 import Signup from './SignUp';
 import Dashboard from './Dashboard';
+import Profile from './profile'
 import { StyledContainer } from './Styles';
 import { Search } from './Search';
 
@@ -16,10 +17,7 @@ function App() {
         <Route path="/login" element={<StyledContainer><Login /></StyledContainer>}/>
         <Route path="/dashboard" element={<StyledContainer><Dashboard /></StyledContainer>}/>
         <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>}/>
-<<<<<<< HEAD
-=======
         <Route path="/profile" element={<Profile/>}/>
->>>>>>> 5279376f412551ac557adb97b8a8aa042bec5326
         <Route path="/search" element={<StyledContainer><Search /></StyledContainer>}/>
         <Route path="/home" element={
             <div>
