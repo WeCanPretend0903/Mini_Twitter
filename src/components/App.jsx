@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<StyledContainer><Login /></StyledContainer>}/>
         <Route path="/dashboard" element={<StyledContainer><Dashboard /></StyledContainer>}/>
         <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>}/>
-        <Route path="/profile" element={<StyledContainer><Profile/></StyledContainer>}/>
+        <Route path="/profile" element={<Profile/>}/>
         <Route path="/search" element={<StyledContainer><Search /></StyledContainer>}/>
         <Route path="/home" element={
             <div>

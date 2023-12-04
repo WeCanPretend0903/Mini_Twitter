@@ -10,7 +10,8 @@ export const colors ={
     dark1: "#1f2937",
     dark2: "#4b5563",
     dark3: "#9ca3af",
-    red: "#dc2626"
+    red: "#dc2626",
+    cyan: "#00FFFF"
 }
 
 export const StyledContainer = styled.div`
@@ -120,7 +121,7 @@ export const StyledLabel = styled.p`
 `;
 
 export const StyledFormArea = styled.div`
-      background-color: ${props => props.bg || colors.light1};
+      background-color: ${props => props.bg || colors.light2};
       test-align: center;
       padding: 45px 55px;
 
@@ -182,9 +183,4 @@ export const StyledIcon = styled.p`
 
 `;
 
-export const CopyrghtText = styled.p`
-       padding: 5px;
-       margin: 20px;
-       text-align: center;
-       color: ${colors.light2};
-`;
+

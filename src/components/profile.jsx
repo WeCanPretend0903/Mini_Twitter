@@ -1,40 +1,68 @@
 // Profile.jsx
-import React from 'react';
-import { Avatar, StyledTitle, StyledSubTitle, ButtonGroup, StyledButton, StyledFormArea } from '../components/Styles';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Avatar } from './Styles'; // Assuming Avatar component is in './Styles'
 import Logo from '../Assets/logo.png';
-import { signOut } from 'firebase/auth';
+import './profile.css';
 
 const Profile = () => {
-    const history = useNavigate();
+  // Dummy user data (replace with your actual user data)
+  const userData = {
+    username: 'JohnDoe',
+    email: 'john.doe@example.com',
+  };
 
+  // State to manage user data
+  const [user, setUser] = useState(userData);
 
-    return (
-        <div>
-            <div
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    backgroundColor: "transparent",
-                    width: "100%",
-                    padding: "15px",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                }}>
-                <Avatar image={Logo} />
-            </div>
-            <StyledFormArea bg="transparent">
-                <StyledTitle size={30}>Your Display Name</StyledTitle>
-                <StyledSubTitle size={18}>@yourusername</StyledSubTitle>
-                <StyledSubTitle size={18}>Your Bio or Description Goes Here</StyledSubTitle>
-                <ButtonGroup>
-                    <StyledButton>Edit Profile</StyledButton>
-                </ButtonGroup>
-            </StyledFormArea>
+  // Dummy logout function (replace with your actual logout logic)
+  const handleLogout = () => {
+    // Implement your logout logic here
+    console.log('Logout clicked');
+  };
+
+  const home = () => {
+    console.log('Home Page');
+  };
+
+  return (
+    <div>
+      {/* Navigation Bar */}
+      <nav>
+        <div className="navbar">
+          <div className="logo">
+            <Avatar image={Logo} />
+          </div>
+          <div className="logoutButtonContainer">
+            <button className="logoutButton" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+          <div className="homeButtonContainer">
+            <button className="homeButton" onClick={home}>
+              Home
+            </button>
+          </div>
         </div>
-    );
+      </nav>
+
+      {/* User Information Box */}
+      <div className="profileBox">
+        <div className="userImageContainer">
+          <img
+            className="userImage"
+            src={Logo}  
+            alt="User Profile"
+          />
+        </div>
+        <div className='textContainer'>
+          <strong>Username:</strong> {user.username}
+        </div>
+        <div>
+          <strong>Email:</strong> {user.email}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Profile;
-
