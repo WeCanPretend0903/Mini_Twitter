@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {useField} from "formik";
-import {StyledTextInput,StyledLabel,StyledIcon, ErrorMsg} from "../components/Styles";
+import {StyledTextInput,StyledLabel,StyledIcon, ErrorMsg} from "./Styles";
 import {FiEyeOff, FiEye} from "react-icons/fi";
 export const TextInput = ({icon,...props}) => {
     const [field, meta] = useField(props);

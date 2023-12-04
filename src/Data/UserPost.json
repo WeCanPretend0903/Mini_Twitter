@@ -1,0 +1,44 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "userType": "OU",
+        "Likes": "50",
+        "Dislike": "100"
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",  
+        "userType": "CU",
+        "Likes": "507",
+        "Dislike": "100"
+      },
+      {
+        "id": 3,
+        "name": "Steven",
+        "email": "admin@example.com",
+        "userType": "CU",
+        "Likes": "550",
+        "Dislike": "100"
+      },
+      {
+        "id": 4,
+        "name": "User4",
+        "email": "admin@example.com",   
+        "userType": "OU",
+        "Likes": "2",
+        "Dislike": "9"
+      },
+      {
+        "id": 5,
+        "name": "User5",
+        "email": "admin@example.com", 
+        "userType": "SU",
+        "Likes": "50",
+        "Dislike": "10000000"
+      }
+    ]
+  }
