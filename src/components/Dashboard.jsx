@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup, StyledFormArea } from "../components/Styles";
 import { useNavigate } from 'react-router-dom';
-import Logo from "../Assets/logo.png";
-import profile from '../img/profile.png'
 import { getAuth, signOut, updateProfile } from "firebase/auth";
-import "./Dashboard.css";
-import userData from "../Data/UserData";
+import { onAuthStateChanged } from "firebase/auth";
+import Logo from "../Assets/logo.png";
+import profile from '../img/profile.png';
 
 const Dashboard = () => {
   const history = useNavigate();
@@ -13,25 +12,48 @@ const Dashboard = () => {
   const [bio, setBio] = useState("Your bio or Description Goes here");
   const [user, setUser] = useState({
     displayName: "Username",
+    email: "",
     profilePic: profile,
   });
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        const emailParts = authUser.email.split('@');
+        const username = emailParts.length > 0 ? emailParts[0] : "Username";
+        
+        setUser({
+          displayName: username,
+          email: authUser.email || "",
+          profilePic: authUser.photoURL || profile,
+        });
+      } else {
+        // Handle the case where the user is not signed in
+        history('/');
+      }
+    });
+  
+    return () => {
+      // Unsubscribe from the listener when the component is unmounted
+      unsubscribe();
+    };
+  }, [history]);
 
   const logout = async () => {
     const auth = getAuth();
     try {
-      // Perform any additional logout logic specific to your application
-      // Sign out the user using Firebase authentication
       await signOut(auth);
-      // Redirect to Main home page
       history('/');
     } catch (error) {
       console.error('Logout error:', error.message);
-      // Handle error as needed
     }
   };
+
   const handleEditClick = () => {
     setEditMode(true);
   };
+
   const handleSaveClick = async () => {
     const auth = getAuth();
     await updateProfile(auth.currentUser, {
@@ -40,22 +62,25 @@ const Dashboard = () => {
     });
     setEditMode(false);
   };
+
   const handleMediaFile = (event) => {
     const file = event.target.files[0];
     if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setUser((prevUser) => ({
-            ...prevUser,
-            profilePic: reader.result,
-          }));
-        };
-        reader.readAsDataURL(file);
-      }
-  };  
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUser((prevUser) => ({
+          ...prevUser,
+          profilePic: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const openFile = () => {
     document.getElementById('fileInput').click();
   };
+
   return (
     <div>
       <div className="avatar">
@@ -75,9 +100,10 @@ const Dashboard = () => {
             <Avatar image={user.profilePic} />
           </div>
           <div id="username">
-            <StyledTitle>
-                {user.displayName}
-            </StyledTitle>
+            <StyledTitle>{user.displayName}</StyledTitle>
+          </div>
+          <div id="email">
+            <StyledSubTitle>{user.email}</StyledSubTitle>
           </div>
           {editMode ? (
             <textarea
