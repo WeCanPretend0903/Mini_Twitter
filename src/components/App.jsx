@@ -7,6 +7,7 @@ import Login from './Login';
 import Signup from './SignUp';
 import Dashboard from './Dashboard';
 import { StyledContainer } from './Styles';
+import { Search } from './Search';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/dashboard" element={<StyledContainer><Dashboard /></StyledContainer>}/>
         <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>}/>
         <Route path="/profile" element={<StyledContainer><Profile/></StyledContainer>}/>
+        <Route path="/search" element={<StyledContainer><Search /></StyledContainer>}/>
         <Route path="/home" element={
             <div>
               <NavBar />
