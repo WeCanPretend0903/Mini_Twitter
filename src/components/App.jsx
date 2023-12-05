@@ -6,10 +6,10 @@ import MainHome from './Mainhome';
 import Login from './Login';
 import Signup from './SignUp';
 import Dashboard from './Dashboard';
+import Weather from './Weather';
 import Profile from './profile'
 import { StyledContainer } from './Styles';
 import { Search } from './Search';
-
 function App() {
   // Define the signupUser function
   const signupUser = (user) => {
@@ -29,6 +29,7 @@ function App() {
         </div>} />
         <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>} />
         <Route path="/search" element={<StyledContainer><Search /></StyledContainer>} />
+        <Route path="/weather" element={<StyledContainer><Weather /></StyledContainer>} />
         <Route path="/home" element={
           <div>
             <NavBar />
