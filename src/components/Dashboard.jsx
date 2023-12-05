@@ -7,29 +7,38 @@ import Logo from "../Assets/logo.png";
 import profile from '../img/profile.png';
 import userData from '../Data/UserData.json';
 import './Dashboard.css';
+import { getBalance, setBalance } from './localStorage';
 
 const Dashboard = () => {
   const history = useNavigate();
+  const userId = 1;
   const [editMode, setEditMode] = useState(false);
   const [bio, setBio] = useState("Your bio or Description Goes here");
   const [user, setUser] = useState({
     username: "Username",
     profilePic: profile,
+    id: 0,
   });
-  const [balance, setBalance] = useState(0);
+  const [amount, setAmount] = useState(0);
   useEffect(() => {
-    const user = userData.users.find((user) => user.id === 1);
+    const user = userData.users.find((user) => user.id === userId);
     if (user) {
-      setBalance(user.balance);
+      const storedBalance = getBalance(user.id);
+      setAmount(storedBalance);
       setUser({
         displayName: user.name,
         profilePic: user.profilePicture ? user.profilePicture : profile,
+        id: user.id,
       });
       setBio(user.userBio);
     }
   }, []);
   const generateCurrency = () => {
-    setBalance(prevBalance => prevBalance + 1);
+    if (user) {
+      const newBalance = getBalance(user.id) + 1;
+      setAmount(newBalance);
+      setBalance(user.id, newBalance);
+    }
   };
   const logout = async () => {
     const auth = getAuth();
@@ -40,11 +49,9 @@ const Dashboard = () => {
       console.error('Logout error:', error.message);
     }
   };
-
   const handleEditClick = () => {
     setEditMode(true);
   };
-
   const handleSaveClick = async () => {
     const auth = getAuth();
     await updateProfile(auth.currentUser, {
@@ -53,7 +60,6 @@ const Dashboard = () => {
     });
     setEditMode(false);
   };
-
   const handleMediaFile = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -67,11 +73,9 @@ const Dashboard = () => {
       reader.readAsDataURL(file);
     }
   };
-
   const openFile = () => {
     document.getElementById('fileInput').click();
   };
-
   return (
     <div className="dashboard">
       <div className="heading">
@@ -134,7 +138,7 @@ const Dashboard = () => {
             </ButtonGroup>
         </div>
         <div className="balance-info">
-          <h3 id="balance">Your Balance: ${balance.toFixed(2)}</h3>
+          <h3 id="balance">Your Balance: ${amount.toFixed(2)}</h3>
           <StyledButton id="deposit-button" onClick={generateCurrency}>Generate Currency</StyledButton>
         </div>
       </div>

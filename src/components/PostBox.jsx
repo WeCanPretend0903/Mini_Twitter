@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import "./PostBox.css";
 import profile from '../img/profile.png'
 import profanityData from '../Data/profanity-list.json'; // file obtained from https://github.com/dsojevic/profanity-list/tree/main
-import userData from "../Data/UserData";
+import userData from "../Data/UserData.json";
+import { getBalance, setBalance } from './localStorage';
 
 function PostBox ({ onSubmit }) {
   // post data
+  const userId = 1;
+  const userInfo = userData.users.find((user) => user.id === userId);
   const [data, setData] = useState({
     user: {
-      username: "Kevin Zheng",
+      username: "Username",
       profilepic: profile,
       userType: "OU",
     },
@@ -17,7 +20,20 @@ function PostBox ({ onSubmit }) {
     mediaFile: null,
     errorMessage: '',
     time: 0,
-  });
+  });  
+  useEffect(() => {
+    const userInfo = userData.users.find((user) => user.id === userId);
+    if (userInfo) {
+      setData(prevData => ({
+        ...prevData,
+        user: {
+          username: userInfo.name,
+          profilepic: userInfo.profilePicture !== "" ? userInfo.profilePicture : profile,
+          userType: userInfo.userType,
+        },
+      }));
+    }
+  }, []);  
   const profanityList = profanityData.map(profanity => ({
     id: profanity.id,
     match: profanity.match,
@@ -66,8 +82,7 @@ function PostBox ({ onSubmit }) {
   }
   // count bad words
   const countBadWords = () => {
-    const text = data.content;
-    const words = text.split(/\s+/);
+    const words = data.content.split(/\s+/);
     let tabooWordsCount = 0;
     words.forEach(word => {
       const normalizedWord = word.toLowerCase().trim();
@@ -83,19 +98,26 @@ function PostBox ({ onSubmit }) {
   };
   // count total words
   const countWords = () => {
-    let words = data.content.split(/\s+/).filter(word => word.trim() !== ''); 
+    let words = data.content.split(/\s+/).filter(word => word.trim() !== '');
+    let length = words.length
     if (data.mediaFile) {
       if (data.mediaFile.type.startsWith('image/')) {
-        words += 10;
+        length += 10;
       } else {
-        words += 15;
+        length += 15;
       }
     }
-    return words;
+    return length;
   };
-  //
-  const chargeUser = () => {
-    return;
+  // charge user for posting
+  const chargeUser = (amount) => {
+    const currentBalance = getBalance(userInfo.id);
+    if (currentBalance >= amount) {
+      setBalance(userInfo.id, currentBalance - amount)
+    } else {
+      // send warning
+      setData({errorMessage: "Not sufficent funds. Head to dashboard to deposit money."});
+    }
   };
   // post message
   const postMessage = () => {
@@ -103,16 +125,17 @@ function PostBox ({ onSubmit }) {
     if (badWordCount > 2) {
       setData((prevData) => ({ ...prevData, errorMessage: "Bad langauge, sending a warning."}));
       return;
-    }
-    else {
+    } else {
       const wordCount = countWords();
-      if (data.user.userType == "OU") {
+      let chargeAmount = 0;
+      if (data.user.userType === "OU") {
         if (wordCount > 20) {
-          chargeUser((0.1 * (wordCount - 20)))
+          chargeAmount = 0.1 * (wordCount - 20);
         }
       } else if (data.user.userType === "CU") {
-        chargeUser(wordCount);
+        chargeAmount = wordCount;
       }
+      chargeUser(chargeAmount);
       const postData = {
         user: data.user,
         keywords: data.keywords,
@@ -123,8 +146,9 @@ function PostBox ({ onSubmit }) {
       onSubmit(postData);
       setData({
         user: {
-          username: "Kevin Zheng",
-          profilepic: profile
+          username: userData ? userInfo.name : "Username",
+          profilepic: userInfo && userInfo.profilePicture !== "" ? userInfo.profilePicture : profile,
+          userType: userData ? userInfo.userType : "Surfer",
         },
         keywords: ['', '', ''],
         content: '',

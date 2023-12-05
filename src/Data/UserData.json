@@ -5,10 +5,10 @@
       "name": "John Doe",
       "email": "john.doe@example.com",
       "password": "password123",  
-      "profilePicture": "https://example.com/profile.jpg",
+      "profilePicture": "",
       "userBio": "Hi I am John Doe.",
       "userType": "OU",
-      "balance": 0.50
+      "balance": 1.50
     },
     {
       "id": 2,
