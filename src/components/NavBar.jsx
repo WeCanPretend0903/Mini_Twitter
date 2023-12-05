@@ -11,13 +11,10 @@ function NavBar() {
           <a href="/home">Home</a>
         </li>
         <li>
-          <a href="/explore">Following</a>
+          <a href="/dashboard">Profile</a>
         </li>
         <li>
-          <a href="/friends">Explore</a>
-        </li>
-        <li>
-          <a href="/notifications">Notifications</a>
+          <a href="/weather">Weather</a>
         </li>
         <li>
           <Link to="/search">Search</Link>
