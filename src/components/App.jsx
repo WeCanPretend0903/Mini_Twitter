@@ -22,7 +22,11 @@ function App() {
       <Routes>
         <Route path="/signup" element={<StyledContainer><Signup signupUser={signupUser} /></StyledContainer>} />
         <Route path="/login" element={<StyledContainer><Login /></StyledContainer>} />
-        <Route path="/dashboard" element={<StyledContainer><Dashboard /></StyledContainer>} />
+        <Route path="/dashboard" element={
+        <div>
+          <NavBar/>
+          <StyledContainer><Dashboard /></StyledContainer>
+        </div>} />
         <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>} />
         <Route path="/search" element={<StyledContainer><Search /></StyledContainer>} />
         <Route path="/home" element={

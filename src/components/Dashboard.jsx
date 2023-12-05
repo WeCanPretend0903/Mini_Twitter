@@ -9,6 +9,7 @@ import profile from '../img/profile.png';
 import userData from '../Data/UserData.json';
 import './Dashboard.css';
 import { getBalance, setBalance } from './localStorage';
+import NavBar from './NavBar';
 const Dashboard = ({ location }) => {
   const history = useNavigate();
 
@@ -58,19 +59,16 @@ const Dashboard = ({ location }) => {
     }
   };
 
-  const logout = async () => {
-    try {
-      await signOut(auth);
-      // Remove the user and userId from localStorage
-      localStorage.removeItem('user');
-      localStorage.removeItem('userId');
-    
-      // Redirect to the login page
-      history('/');
-    } catch (error) {
-      console.error('Logout error:', error.message);
-    }
+  const logout = () => {
+    // Remove the user and userId from localStorage
+    localStorage.removeItem('user');
+    localStorage.removeItem('userId');
+  
+    // Use the history object to navigate to the '/' route
+    history.push('/');
   };
+  
+  
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -106,10 +104,6 @@ const Dashboard = ({ location }) => {
   return (
     <div className="dashboard">
       <div className="heading">
-        <div className="avatar">
-          {/* Assuming Logo is an image */}
-          <Avatar image={Logo} />
-        </div>
         <StyledFormArea className="form-area" bg="transparent">
           <StyledTitle className="title" size={65}>
             Welcome To SnapTweet
