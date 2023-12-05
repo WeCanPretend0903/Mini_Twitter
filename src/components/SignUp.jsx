@@ -47,7 +47,7 @@ const SignUp = ({ signupUser }) => {
                 signupUser(user);
           
                 // Redirect to dashboard
-                history('/dashboard', { state: { signedUpUser: user } });
+                history('/login', { state: { signedUpUser: user } });
               } else {
                 // User not found
                 setFieldError('email', 'Invalid email, username, or password');
