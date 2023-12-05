@@ -1,0 +1,8 @@
+.searchResult {
+    padding: 10px 20px;
+}
+
+/*highlight the list items in result list when user move their mouse on it*/
+.searchResult:hover {
+    background-color: rgb(177, 177, 177)
+}
