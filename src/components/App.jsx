@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
 import HomePage from './Home';
@@ -10,20 +11,26 @@ import { StyledContainer } from './Styles';
 import { Search } from './Search';
 
 function App() {
+  // Define the signupUser function
+  const signupUser = (user) => {
+    // Implement your signupUser logic here
+    console.log('User signed up:', user);
+  };
+
   return (
     <Router>
       <Routes>
-        <Route path="/signup" element={<StyledContainer><Signup /></StyledContainer>}/>
-        <Route path="/login" element={<StyledContainer><Login /></StyledContainer>}/>
-        <Route path="/dashboard" element={<StyledContainer><Dashboard /></StyledContainer>}/>
-        <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>}/>
-        <Route path="/search" element={<StyledContainer><Search /></StyledContainer>}/>
+        <Route path="/signup" element={<StyledContainer><Signup signupUser={signupUser} /></StyledContainer>} />
+        <Route path="/login" element={<StyledContainer><Login /></StyledContainer>} />
+        <Route path="/dashboard" element={<StyledContainer><Dashboard /></StyledContainer>} />
+        <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>} />
+        <Route path="/search" element={<StyledContainer><Search /></StyledContainer>} />
         <Route path="/home" element={
-            <div>
-              <NavBar />
-              <HomePage />
-            </div>
-          }
+          <div>
+            <NavBar />
+            <HomePage />
+          </div>
+        }
         />
       </Routes>
     </Router>
@@ -31,6 +38,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

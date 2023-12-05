@@ -18,7 +18,7 @@ const Dashboard = () => {
   });
   const [balance, setBalance] = useState(0);
   useEffect(() => {
-    const user = userData.users.find((user) => user.id === 1);
+    const user = userData.users.find((user) => user.id === 2);
     if (user) {
       setBalance(user.balance);
       setUser({

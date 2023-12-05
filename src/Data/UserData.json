@@ -7,7 +7,7 @@
       "password": "password123",  
       "profilePicture": "https://example.com/profile.jpg",
       "userBio": "Hi I am John Doe.",
-      "userType": "OU",
+      "userType": "ordinary",
       "balance": 0.50
     },
     {
@@ -17,7 +17,7 @@
       "password": "securepass",    
       "profilePicture": "",
       "userBio": "Hi I am Jane Smith.",
-      "userType": "CU",
+      "userType": "corporate",
       "balance": 100.75
     },
     {
