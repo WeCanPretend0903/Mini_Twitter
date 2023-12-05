@@ -4,8 +4,10 @@ import profile from '../img/profile.png'
 import profanityData from '../Data/profanity-list.json'; // file obtained from https://github.com/dsojevic/profanity-list/tree/main
 import userData from "../Data/UserData.json";
 import { getBalance, setBalance } from './localStorage';
+import { useNavigate } from 'react-router';
 
 function PostBox ({ onSubmit }) {
+  const history = useNavigate();
   // post data
   const userId = 1;
   const userInfo = userData.users.find((user) => user.id === userId);
@@ -22,6 +24,14 @@ function PostBox ({ onSubmit }) {
     time: 0,
   });  
   useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const userId = Number(localStorage.getItem('userId')); // Convert to number
+  
+    if (!storedUser || !userId) {
+      console.error('User or userId is undefined');
+      history('/');
+      return;
+    }
     const userInfo = userData.users.find((user) => user.id === userId);
     if (userInfo) {
       setData(prevData => ({
