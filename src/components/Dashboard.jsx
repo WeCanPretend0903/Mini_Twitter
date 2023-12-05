@@ -2,70 +2,95 @@ import React, { useState, useEffect } from 'react';
 import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup, StyledFormArea } from "../components/Styles";
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut, updateProfile } from "firebase/auth";
+import { auth } from './firebase';
 import { onAuthStateChanged } from "firebase/auth";
 import Logo from "../Assets/logo.png";
 import profile from '../img/profile.png';
 import userData from '../Data/UserData.json';
 import './Dashboard.css';
 import { getBalance, setBalance } from './localStorage';
-
-const Dashboard = () => {
+const Dashboard = ({ location }) => {
   const history = useNavigate();
-  const userId = 1;
+
+  // Unconditionally call useState for editMode, bio, dashboardUser, amount
   const [editMode, setEditMode] = useState(false);
   const [bio, setBio] = useState("Your bio or Description Goes here");
-  const [user, setUser] = useState({
-    username: "Username",
+  const [dashboardUser, setDashboardUser] = useState({
+    displayName: "Username",
     profilePic: profile,
     id: 0,
   });
   const [amount, setAmount] = useState(0);
+
   useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const userId = Number(localStorage.getItem('userId')); // Convert to number
+  
+    if (!storedUser || !userId) {
+      console.error('User or userId is undefined');
+      history('/');
+      return;
+    }
+  
     const user = userData.users.find((user) => user.id === userId);
     if (user) {
       const storedBalance = getBalance(user.id);
       setAmount(storedBalance);
-      setUser({
+      setDashboardUser({
         displayName: user.name,
         profilePic: user.profilePicture ? user.profilePicture : profile,
         id: user.id,
       });
       setBio(user.userBio);
+    } else {
+      // Handle case where user is not found
+      console.error('User not found');
+      history('/');
     }
-  }, []);
+  }, [history]);
+  
+
   const generateCurrency = () => {
-    if (user) {
-      const newBalance = getBalance(user.id) + 1;
+    if (dashboardUser) {
+      const newBalance = getBalance(dashboardUser.id) + 1;
       setAmount(newBalance);
-      setBalance(user.id, newBalance);
+      setBalance(dashboardUser.id, newBalance);
     }
   };
+
   const logout = async () => {
-    const auth = getAuth();
     try {
       await signOut(auth);
+      // Remove the user and userId from localStorage
+      localStorage.removeItem('user');
+      localStorage.removeItem('userId');
+    
+      // Redirect to the login page
       history('/');
     } catch (error) {
       console.error('Logout error:', error.message);
     }
   };
+
   const handleEditClick = () => {
     setEditMode(true);
   };
+
   const handleSaveClick = async () => {
     const auth = getAuth();
     await updateProfile(auth.currentUser, {
-      displayName: user.displayName,
-      profilePic: user.profilePic,
+      displayName: dashboardUser.displayName,
+      profilePic: dashboardUser.profilePic,
     });
     setEditMode(false);
   };
+
   const handleMediaFile = (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setUser((prevUser) => ({
+        setDashboardUser((prevUser) => ({
           ...prevUser,
           profilePic: reader.result,
         }));
@@ -73,73 +98,76 @@ const Dashboard = () => {
       reader.readAsDataURL(file);
     }
   };
+
   const openFile = () => {
     document.getElementById('fileInput').click();
   };
+
   return (
     <div className="dashboard">
       <div className="heading">
         <div className="avatar">
+          {/* Assuming Logo is an image */}
           <Avatar image={Logo} />
         </div>
-          <StyledFormArea className="form-area" bg="transparent">
-            <StyledTitle className="title" size={65}>
-              Welcome To SnapTweet
-            </StyledTitle>
-            <ButtonGroup className="button-group">
-            <StyledButton onClick={logout} to="#">
+        <StyledFormArea className="form-area" bg="transparent">
+          <StyledTitle className="title" size={65}>
+            Welcome To SnapTweet
+          </StyledTitle>
+          <ButtonGroup className="button-group">
+            <StyledButton onClick={logout} >
               Logout
             </StyledButton>
-            </ButtonGroup>
-          </StyledFormArea>
+          </ButtonGroup>
+        </StyledFormArea>
       </div>
       <div className="user-info">
         <div className="profile-info">
-            <div id="profile-pic">
-            <Avatar image={user.profilePic} />
+          <div id="profile-pic">
+            <Avatar image={dashboardUser.profilePic} />
           </div>
           <div id="username">
-            <StyledTitle>
-                {user.displayName}
-            </StyledTitle>
+            <StyledTitle>{dashboardUser.displayName}</StyledTitle>
           </div>
           {editMode ? (
             <textarea
-                id="description"
-                className="edit-bio-textarea"
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-                rows={4}
-                cols={50}
+              id="description"
+              className="edit-bio-textarea"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              rows={4}
+              cols={50}
             />
-            ) : (
+          ) : (
             <StyledSubTitle className="description" id="description">
-                {bio}
+              {bio}
             </StyledSubTitle>
-            )}
-            <ButtonGroup className="button-group">
+          )}
+          <ButtonGroup className="button-group">
             {editMode ? (
-                <>
+              <>
                 <StyledButton onClick={handleSaveClick}>Save</StyledButton>
                 <StyledButton onClick={openFile}>Upload Image</StyledButton>
                 <input
-                    id="fileInput"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleMediaFile}
-                    style={{ display: "none" }}
+                  id="fileInput"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleMediaFile}
+                  style={{ display: "none" }}
                 />
-                </>
+              </>
             ) : (
-                <>
+              <>
                 <StyledButton onClick={handleEditClick}>Edit Profile</StyledButton>
-                </>
+              </>
             )}
-            </ButtonGroup>
+          </ButtonGroup>
         </div>
         <div className="balance-info">
           <h3 id="balance">Your Balance: ${amount.toFixed(2)}</h3>
-          <StyledButton id="deposit-button" onClick={generateCurrency}>Generate Currency</StyledButton>
+          <StyledButton id="deposit-button" onClick={generateCurrency}>
+            Generate Currency
+          </StyledButton>
         </div>
       </div>
     </div>
