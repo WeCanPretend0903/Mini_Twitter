@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup, StyledFormArea } from "../components/Styles";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import {
+  StyledTitle,
+  StyledSubTitle,
+  Avatar,
+  StyledButton,
+  ButtonGroup,
+  StyledFormArea,
+} from "../components/Styles";
+import { useNavigate } from "react-router-dom";
 import { getAuth, signOut, updateProfile } from "firebase/auth";
-import { auth } from './firebase';
+import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import Logo from "../Assets/logo.png";
-import profile from '../img/profile.png';
-import userData from '../Data/UserData.json';
-import './Dashboard.css';
-import { getBalance, setBalance } from './localStorage';
-import NavBar from './NavBar';
+import profile from "../img/profile.png";
+import userData from "../Data/UserData.json";
+import "./Dashboard.css";
+import { getBalance, setBalance } from "./localStorage";
+import NavBar from "./NavBar";
+import { Link } from "react-router-dom";
 const Dashboard = ({ location }) => {
   const history = useNavigate();
 
@@ -24,15 +32,15 @@ const Dashboard = ({ location }) => {
   const [amount, setAmount] = useState(0);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    const userId = Number(localStorage.getItem('userId')); // Convert to number
-  
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const userId = Number(localStorage.getItem("userId")); // Convert to number
+
     if (!storedUser || !userId) {
-      console.error('User or userId is undefined');
-      history('/');
+      console.error("User or userId is undefined");
+      history("/");
       return;
     }
-  
+
     const user = userData.users.find((user) => user.id === userId);
     if (user) {
       const storedBalance = getBalance(user.id);
@@ -45,11 +53,10 @@ const Dashboard = ({ location }) => {
       setBio(user.userBio);
     } else {
       // Handle case where user is not found
-      console.error('User not found');
-      history('/');
+      console.error("User not found");
+      history("/");
     }
   }, [history]);
-  
 
   const generateCurrency = () => {
     if (dashboardUser) {
@@ -61,14 +68,12 @@ const Dashboard = ({ location }) => {
 
   const logout = () => {
     // Remove the user and userId from localStorage
-    localStorage.removeItem('user');
-    localStorage.removeItem('userId');
-  
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+
     // Use the history object to navigate to the '/' route
-    history.push('/');
+    history.push("/");
   };
-  
-  
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -98,7 +103,7 @@ const Dashboard = ({ location }) => {
   };
 
   const openFile = () => {
-    document.getElementById('fileInput').click();
+    document.getElementById("fileInput").click();
   };
 
   return (
@@ -109,9 +114,7 @@ const Dashboard = ({ location }) => {
             Welcome To SnapTweet
           </StyledTitle>
           <ButtonGroup className="button-group">
-            <StyledButton onClick={logout} >
-              Logout
-            </StyledButton>
+            <StyledButton onClick={logout}>Logout</StyledButton>
           </ButtonGroup>
         </StyledFormArea>
       </div>
@@ -152,7 +155,9 @@ const Dashboard = ({ location }) => {
               </>
             ) : (
               <>
-                <StyledButton onClick={handleEditClick}>Edit Profile</StyledButton>
+                <StyledButton onClick={handleEditClick}>
+                  Edit Profile
+                </StyledButton>
               </>
             )}
           </ButtonGroup>
@@ -162,6 +167,37 @@ const Dashboard = ({ location }) => {
           <StyledButton id="deposit-button" onClick={generateCurrency}>
             Generate Currency
           </StyledButton>
+        </div>
+        <div className="warning-Messages">
+          <h3>Warning Messages</h3>
+          {/* Scrollable container for warning messages */}
+          <div className="warning-Messages-Container">
+            <p>
+              <a href="/warning/1">Warning Message</a>
+            </p>
+            <p>
+              <a href="/warning/1">Payment Due</a>
+            </p>
+            <p>
+              <a href="/warning/1">Due day</a>
+            </p>
+            <p>
+              <a href="/warning/1">Warning Message</a>
+            </p>
+            <p>
+              <a href="/warning/1">Warning Message</a>
+            </p>
+            <p>
+              <a href="/warning/1">Warning Message</a>
+            </p>
+            <p>
+              <a href="/warning/1">Warning Message</a>
+            </p>
+            <p>
+              <a href="/warning/1">Warning Message</a>
+            </p>
+            {/* ... more warning messages */}
+          </div>
         </div>
       </div>
     </div>

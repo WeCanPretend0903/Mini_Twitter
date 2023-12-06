@@ -67,3 +67,44 @@
 #deposit-button {
   margin-top: 10px;
 }
+.warning-Messages {
+  border-radius: 10px;
+  background-color: darkcyan;
+  font-family: Arial, sans-serif;
+  border: 3px solid aquamarine;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.warning-Messages-Container{
+  max-height: 250px; /* Adjust this value as needed */
+  overflow-y: scroll;
+}
+.warning-Messages-Container a{
+  text-decoration: none;
+  box-shadow: inset 0 0 0 0 #54b3d6;
+  color: black;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+.warning-Messages-Container a:hover{
+  box-shadow: inset 300px 0 0 0 #074040;
+  color: white;
+}
+.warning-Messages h3 {
+  color: white;
+  padding: 8px 16px;
+  margin: 0;
+  border-bottom: 1px solid #ddd;
+  display: block; 
+  text-decoration: none; 
+  padding: 10px; 
+  border-radius: 4px; 
+  transition: background-color 0.3s ease;
+   
+}
+.warning-Messages-Container p {
+  margin-bottom: 30px;
+}
+
+
+
+
+
