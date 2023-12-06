@@ -29,7 +29,11 @@ function App() {
         </div>} />
         <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>} />
         <Route path="/search" element={<StyledContainer><Search /></StyledContainer>} />
-        <Route path="/weather" element={<StyledContainer><Weather /></StyledContainer>} />
+        <Route path="/weather" element={
+         <div>
+         <NavBar/>
+        <StyledContainer><Weather /></StyledContainer>
+        </div>} />
         <Route path="/home" element={
           <div>
             <NavBar />
