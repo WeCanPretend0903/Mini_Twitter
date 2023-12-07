@@ -22,7 +22,6 @@ function App() {
   return (
     <Router>
       <Routes>
-<<<<<<< HEAD
         <Route
           path="/signup"
           element={
@@ -77,9 +76,12 @@ function App() {
         <Route
           path="/weather"
           element={
+            <div>
+            <NavBar />
             <StyledContainer>
               <Weather />
             </StyledContainer>
+            </div>
           }
         />
         <Route
@@ -89,8 +91,7 @@ function App() {
               <NavBar />
               <HomePage />
             </div>
-          }
-=======
+          }/>
         <Route path="/signup" element={<StyledContainer><Signup signupUser={signupUser} /></StyledContainer>} />
         <Route path="/login" element={<StyledContainer><Login /></StyledContainer>} />
         <Route path="/dashboard" element={
@@ -111,7 +112,6 @@ function App() {
             <HomePage />
           </div>
         }
->>>>>>> origin/main
         />
       </Routes>
     </Router>
