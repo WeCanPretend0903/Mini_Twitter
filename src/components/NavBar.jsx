@@ -17,7 +17,7 @@ function NavBar() {
           <a href="/weather">Weather</a>
         </li>
         <li>
-          <a href="/warning">Warning Messages</a>
+          <a href="/warning">Warnings</a>
         </li>
         <li>
           <a href="/search">Search</a>

@@ -24,16 +24,10 @@ export const SearchBar = ({setResults, data }) => {
         setInput(value);
         fetchData(value);
     };
-/*
-    const navigateToResultsPage = () => {
-      // You can use the useHistory hook to navigate to another page
-      navigate('/result', { state: { results } });
-    };
-*/
     return (
         <div className="inputWrapper">
             <FaSearch id="searchIcon" />
-            <input id="searchInput"placeholder="Search or Type an User name" 
+            <input id="searchInput"placeholder="Snap the search" 
             value={input}
             onChange={(e) => handleInputChange(e.target.value)} //store the typing inside input variable
             />

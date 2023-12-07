@@ -22,7 +22,17 @@ const HomePage = () => {
       return post.likes > 10 && (post.likes - post.dislikes) > 3;
     }
     return false;
-  };  
+  };
+  // sort post by likes
+  const sortByLikes = (posts) => {
+    posts.sort((a, b) => {
+      if (a && b) {
+        return b.likes - a.likes;
+      }
+      return 0;
+    });
+    return posts;
+  };
   useEffect(() => {
     const fetchPosts = () => {
       if (!isInitialized) {
@@ -39,7 +49,8 @@ const HomePage = () => {
         };
       });
       const regularPosts = postsWithUserData.filter(post => !isTrending(post));
-      const trendingPosts = postsWithUserData.filter(post => isTrending(post));
+      let trendingPosts = postsWithUserData.filter(post => isTrending(post));
+      sortByLikes(trendingPosts);
       setPosts(regularPosts);
       setTrending(trendingPosts);
       };
@@ -53,16 +64,15 @@ const HomePage = () => {
   // handle trending post
   const handleLikeChange = (postId, trendStatus) => {
     const post = posts.find(post => post.postId === postId);
-    console.log(post.postId, trendStatus);
     if (post && trendStatus) {
       const regularPosts = posts.filter(post => post.postId !== postId);
       setPosts(regularPosts);
-      setTrending(prevTrending => [post, ...prevTrending]);
+      setTrending(prevTrending => [...prevTrending, post]);
       return
     }
     const trendingPost = trending.find(post => post.postId === postId);
     if (trendingPost && !trendStatus) {
-      const trendingPosts = trending.filter(post => post.postID !== postId);
+      const trendingPosts = trending.filter(post => post.postId !== postId);
       setTrending(trendingPosts);
       setPosts(prevPost => [trendingPost, ...prevPost]);
       return

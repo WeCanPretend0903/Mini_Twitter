@@ -24,8 +24,7 @@ function PostBox ({ onSubmit }) {
   });  
   useEffect(() => {
     if (!currentUser) {
-      const storedUser = JSON.parse(localStorage.getItem('user'));
-      const userId = Number(localStorage.getItem('userId')); // Convert to number
+      const userId = Number(localStorage.getItem('userId'));
       const userInfo = userData.users.find((user) => user.id === userId);
       if (userInfo) {
         setCurrentUser(userInfo);
@@ -131,6 +130,11 @@ function PostBox ({ onSubmit }) {
       return false;
     }
   };
+  // check for ad links
+  const checkAds = () => {
+    const urlRegex = /(?:https?:\/\/)?([^\s]+)/;
+    return urlRegex.test(data.content);
+  };
   // post message
   const postMessage = async () => {
     if (data.user.userType === "Surfer") {
@@ -143,11 +147,20 @@ function PostBox ({ onSubmit }) {
       return;
     } else {
       const wordCount = countWords();
+      if (wordCount === 0) {
+        setData({ ...data, errorMessage: "No message to post." })
+      }
       let chargeAmount = 0;
       let success;
       if (data.user.userType === "OU") {
         if (wordCount > 20) {
           chargeAmount = 0.1 * (wordCount - 20);
+        }
+        if (checkAds()) {
+          setData({ ...data, errorMessage: "Posting ads, sending a warning." });
+          chargeUser(10);
+          // send warning
+          return;
         }
       } else if (data.user.userType === "CU") {
         chargeAmount = wordCount;
