@@ -22,7 +22,7 @@ const Home = ()=> {
             Welcome To SnapTweet
            </StyledTitle>
            <StyledSubTitle size={27}>
-            Welcome to our Page
+           Share the Moment, Trend the World!
            </StyledSubTitle>
            <ButtonGroup>
            <StyledButton to="/login">Login</StyledButton>

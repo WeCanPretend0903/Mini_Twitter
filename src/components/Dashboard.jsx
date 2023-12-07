@@ -6,7 +6,9 @@ import {
   StyledButton,
   ButtonGroup,
   StyledFormArea,
+  StyledUserTitle
 } from "../components/Styles";
+import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut, updateProfile } from "firebase/auth";
 import { auth } from "./firebase";
@@ -113,7 +115,7 @@ const Dashboard = ({ location }) => {
     <div className="dashboard">
       <div className="heading">
         <StyledFormArea className="form-area" bg="transparent">
-          <StyledTitle className="title" size={65}>
+          <StyledTitle className="Title" size={65}>
             Welcome To SnapTweet
           </StyledTitle>
           <ButtonGroup className="button-group">
@@ -127,7 +129,7 @@ const Dashboard = ({ location }) => {
             <Avatar image={dashboardUser.profilePic} />
           </div>
           <div id="username">
-            <StyledTitle>{dashboardUser.displayName}</StyledTitle>
+            <StyledUserTitle>{dashboardUser.displayName}</StyledUserTitle>
           </div>
           {editMode ? (
             <textarea

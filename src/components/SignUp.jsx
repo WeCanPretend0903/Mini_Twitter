@@ -16,7 +16,7 @@ const SignUp = ({ signupUser }) => {
     <div>
       <StyledFormArea>
         <Avatar image={Logo} />
-        <StyledTitle color={colors.theme} size={30}>User Signup</StyledTitle>
+        <StyledTitle color={colors.cyan} size={30}>User Signup</StyledTitle>
         <Formik
           initialValues={{
             email: "",

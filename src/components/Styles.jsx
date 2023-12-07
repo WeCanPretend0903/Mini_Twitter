@@ -29,7 +29,7 @@ export const StyledContainer = styled.div`
 export const StyledTitle = styled.h2`
      font-size: ${(props) => props.size}px;
      text-align: center;
-     color: ${(props) => props.color ? props.color : colors.primary};
+     color: ${(props) => props.color ? props.color : colors.cyan};
      padding; 5px;
      margin-bottom: 20px;
      font-family: 'Arial', sans-serif;
@@ -39,7 +39,7 @@ export const StyledTitle = styled.h2`
 export const StyledSubTitle = styled.p`
   font-size: ${(props) => props.size}px;
   text-align: center;
-  color: ${(props) => props.color ? props.color : colors.primary};
+  color: ${(props) => props.color ? props.color : colors.cyan};
   padding: 5px;
   margin-bottom: 25px;
   font-family: 'Arial', sans-serif;
@@ -74,7 +74,7 @@ export const StyledButton = styled(Link)`
 
      &:hover{
         background-color: ${colors.primary};
-        color: ${colors.theme};
+        color: ${colors.cyan};
         cursor: pointer;
      }
 `;
@@ -132,15 +132,15 @@ export const StyledFormButton = styled.button`
       width: 150px;
       background-color: transparent;
       font-size: 16px;
-      border: 2px solid ${colors.theme};
+      border: 2px solid ${colors.cyan};
       border-radius: 25px;
-      color: ${colors.theme};
+      color: ${colors.cyan};
       transition: ease-in-out 0.3s;
       outline: 0;
 
       &:hover{
-        background-color: ${colors.theme};
-        color: ${colors.primary};
+        background-color: ${colors.dark1};
+        color: ${colors.cyan};
         cursor: pointer;
       }
       
@@ -160,6 +160,7 @@ export const ExtraText = styled.p`
        color: ${(props) => (props.color? props.color : colors.dark2)}
        padding: 2px;
        margin-top: 10px;
+       font-family: 'Arial', sans-serif;
 `;
 export const TextLink = styled(Link)`
        text-decoration: none;
@@ -182,5 +183,42 @@ export const StyledIcon = styled.p`
        ${(props) => !props.right && `left: 15px;`}
 
 `;
+export const StyledUserTitle = styled.h2`
+      font-size: ${(props) => props.size}px;
+      text-align: center;
+      color: ${(props) => props.color ? props.color : colors.dark1};
+      padding; 5px;
+      margin-bottom: 20px;
+      font-family: 'Arial', sans-serif;
+`;
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const StyledWButton = styled(Link)`
+     padding: 10px;
+     width: 150px;
+     background-color: transparent;
+     font-size: 20px;
+     border: 3px solid ${colors.primary};
+     border-radius: 25px;
+     color: ${colors.primary};
+     text-decoration: none;
+     text-align: center;
+     transition: ease-in-out 0.3s;
+     outline: 0;
+     font-family: 'Arial', sans-serif;
 
 
+     &:hover{
+        background-color: ${colors.dark1};
+        color: ${colors.theme};
+        cursor: pointer;
+     }
+`;
+export const Image = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
