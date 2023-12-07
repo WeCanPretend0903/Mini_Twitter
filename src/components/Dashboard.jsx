@@ -6,22 +6,24 @@ import {
   StyledButton,
   ButtonGroup,
   StyledFormArea,
+  StyledUserTitle
 } from "../components/Styles";
+import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut, updateProfile } from "firebase/auth";
-import { auth } from "./firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import Logo from "../Assets/logo.png";
 import profile from "../img/profile.png";
 import userData from "../Data/UserData.json";
 import "./Dashboard.css";
 import { getBalance, setBalance } from "./localStorage";
 import NavBar from "./NavBar";
-import { Link } from "react-router-dom";
 const Dashboard = ({ location }) => {
   const history = useNavigate();
 
   // Unconditionally call useState for editMode, bio, dashboardUser, amount
+  const navigateToWarningPage = () => {
+    history("/warning"); // Replace '/warning' with the actual path to your warning message page
+  };
+  const [warningMessages, setWarningMessages] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [bio, setBio] = useState("Your bio or Description Goes here");
   const [dashboardUser, setDashboardUser] = useState({
@@ -34,7 +36,6 @@ const Dashboard = ({ location }) => {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const userId = Number(localStorage.getItem("userId")); // Convert to number
-
     if (!storedUser || !userId) {
       console.error("User or userId is undefined");
       history("/");
@@ -110,7 +111,7 @@ const Dashboard = ({ location }) => {
     <div className="dashboard">
       <div className="heading">
         <StyledFormArea className="form-area" bg="transparent">
-          <StyledTitle className="title" size={65}>
+          <StyledTitle className="Title" size={65}>
             Welcome To SnapTweet
           </StyledTitle>
           <ButtonGroup className="button-group">
@@ -124,7 +125,7 @@ const Dashboard = ({ location }) => {
             <Avatar image={dashboardUser.profilePic} />
           </div>
           <div id="username">
-            <StyledTitle>{dashboardUser.displayName}</StyledTitle>
+            <StyledUserTitle>{dashboardUser.displayName}</StyledUserTitle>
           </div>
           {editMode ? (
             <textarea
@@ -173,28 +174,28 @@ const Dashboard = ({ location }) => {
           {/* Scrollable container for warning messages */}
           <div className="warning-Messages-Container">
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Suspicious Login Attempt Detected</a>
             </p>
             <p>
-              <a href="/warning/1">Payment Due</a>
+              <a href="/warning">Payment Due</a>
             </p>
             <p>
-              <a href="/warning/1">Due day</a>
+              <a href="/warning">Payment Processing Error</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Invalid Input Format</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">System Overload Imminent</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Violation of Terms of Service</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Warning Message</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Warning Message</a>
             </p>
             {/* ... more warning messages */}
           </div>

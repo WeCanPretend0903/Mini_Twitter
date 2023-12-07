@@ -7,7 +7,7 @@ function NavBar() {
     <div className="navbar">
       <img className="logo" alt="logo" src={Logo}></img>
       <ul className="selection">
-        <li>  
+        <li>
           <a href="/home">Home</a>
         </li>
         <li>
@@ -15,6 +15,9 @@ function NavBar() {
         </li>
         <li>
           <a href="/weather">Weather</a>
+        </li>
+        <li>
+          <a href="/warning">Warning Messages</a>
         </li>
         <li>
           <a href="/search">Search</a>

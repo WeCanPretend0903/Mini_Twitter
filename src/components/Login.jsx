@@ -45,7 +45,7 @@ const Login = () => {
     <div>
       <StyledFormArea>
         <Avatar image={Logo} />
-        <StyledTitle color={colors.theme} size={30}>
+        <StyledTitle color={colors.cyan} size={30}>
           User Login
         </StyledTitle>
         <Formik

@@ -1,0 +1,53 @@
+.checklist {
+  list-style-type: none;
+  padding: 0;
+  max-width: 600px; /* Increased max-width */
+  width: 80%; /* Make the width relative to the viewport */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 20px auto; /* Increased margin for more space around */
+  padding: 20px; /* Increased padding for more internal space */
+}
+
+.checklist-item {
+  margin-bottom: 15px; /* Slightly increased margin-bottom */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px; /* Increased padding for each item */
+  border-bottom: 1px solid #eee;
+}
+
+.checklist-item:last-child {
+  border-bottom: none;
+}
+
+.checklist-item label {
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  font-size: 1.1em; /* Slightly larger font size */
+}
+
+.item-details {
+  margin-top: 5px;
+  padding-left: 25px;
+  font-style: italic;
+  color: #555;
+  border-left: 2px solid #ddd;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.checklist-item:hover {
+  background-color: #f9f9f9;
+}
+.warning-message-header {
+  text-align: center;
+  color: #D32F2F; /* Red color for warning indication */
+  font-size: 1.5em;
+  margin: 10px 0;
+  padding-top: 10px;
+}

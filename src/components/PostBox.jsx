@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router';
 function PostBox ({ onSubmit }) {
   // post data
   const history = useNavigate();
-  let user = null;
+  const [currentUser, setCurrentUser] = useState(null);
   const [data, setData] = useState({
     user: {
       username: "Username",
@@ -23,24 +23,21 @@ function PostBox ({ onSubmit }) {
     time: 0,
   });  
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    const userId = Number(localStorage.getItem('userId')); // Convert to number
-    if (!storedUser || !userId) {
-      console.error('User or userId is undefined');
-      history('/');
-      return;
-    }
-    const userInfo = userData.users.find((user) => user.id === userId);
-    if (userInfo) {
-      setData(prevData => ({
-        ...prevData,
-        user: {
-          username: userInfo.name,
-          profilepic: userInfo.profilePicture !== "" ? userInfo.profilePicture : profile,
-          userType: userInfo.userType,
-        },
-      }));
-      user = userInfo;
+    if (!currentUser) {
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      const userId = Number(localStorage.getItem('userId')); // Convert to number
+      const userInfo = userData.users.find((user) => user.id === userId);
+      if (userInfo) {
+        setCurrentUser(userInfo);
+        setData(prevData => ({
+          ...prevData,
+          user: {
+            username: userInfo.name,
+            profilepic: userInfo.profilePicture !== "" ? userInfo.profilePicture : profile,
+            userType: userInfo.userType,
+          },
+        }));
+      }
     }
   }, []);
   const profanityList = profanityData.map(profanity => ({
@@ -120,13 +117,13 @@ function PostBox ({ onSubmit }) {
   };
   // charge user for posting
   const chargeUser = async (amount) => {
-    if (!user) {
+    if (!currentUser) {
       setData({ errorMessage: "Sign up to post messages." });
       return false;
     }
-    const currentBalance = getBalance(user.id);
+    const currentBalance = getBalance(currentUser.id);
     if (currentBalance >= amount) {
-      setBalance(user.id, currentBalance - amount);
+      setBalance(currentUser.id, currentBalance - amount);
       return true;
     } else {
       // send warning
@@ -160,18 +157,21 @@ function PostBox ({ onSubmit }) {
         return;
       }
       const postData = {
-        user: data.user,
+        name: data.user.username,
         keywords: data.keywords,
         content: data.content,
         mediaFile: data.mediaFile,
+        likes: 0,
+        dislikes: 0,
+        shares: 0,
         time: getTime()
       }
       onSubmit(postData);
       setData({
         user: {
-          username: user ? user.name : "Username",
-          profilepic: user && user.profilePicture !== "" ? user.profilePicture : profile,
-          userType: userData ? user.userType : "Surfer",
+          username: currentUser ? currentUser.name : "Username",
+          profilepic: currentUser && currentUser.profilePicture !== "" ? currentUser.profilePicture : profile,
+          userType: currentUser ? currentUser.userType : "Surfer",
         },
         keywords: ['', '', ''],
         content: '',
