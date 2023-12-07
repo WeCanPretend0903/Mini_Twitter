@@ -10,6 +10,7 @@ import Weather from "./Weather";
 import Profile from "./profile";
 import { StyledContainer } from "./Styles";
 import { Search } from "./Search";
+import { ResultPage } from './ResultPage';
 import Warning from "./Warning_Wrapper";
 
 function App() {
@@ -22,6 +23,13 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/result" 
+          element={
+            <StyledContainer>
+              <ResultPage />
+            </StyledContainer>
+          } 
+        />
         <Route
           path="/login"
           element={
