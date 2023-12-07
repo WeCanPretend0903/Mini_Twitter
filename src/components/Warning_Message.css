@@ -44,3 +44,10 @@
 .checklist-item:hover {
   background-color: #f9f9f9;
 }
+.warning-message-header {
+  text-align: center;
+  color: #D32F2F; /* Red color for warning indication */
+  font-size: 1.5em;
+  margin: 10px 0;
+  padding-top: 10px;
+}

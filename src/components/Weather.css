@@ -20,17 +20,6 @@
   .weather-text{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-<<<<<<< HEAD
-  }
-  .warning-message-header {
-    text-align: center;
-    color: #D32F2F; /* Red color for warning indication */
-    font-size: 1.5em;
-    margin: 10px 0;
-    padding-top: 10px;
-  }
-  
-=======
     font-size: 60px;
   }
   .weather-text2{
@@ -48,4 +37,3 @@
       font-size: 20px;
       
   }
->>>>>>> origin/main

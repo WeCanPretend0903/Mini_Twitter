@@ -22,17 +22,6 @@ function App() {
   return (
     <Router>
       <Routes>
-<<<<<<< HEAD
-=======
-        <Route
-          path="/signup"
-          element={
-            <StyledContainer>
-              <Signup signupUser={signupUser} />
-            </StyledContainer>
-          }
-        />
->>>>>>> origin/main
         <Route
           path="/login"
           element={
@@ -83,17 +72,10 @@ function App() {
           path="/weather"
           element={
             <div>
-<<<<<<< HEAD
               <NavBar />
               <StyledContainer>
                 <Weather />
               </StyledContainer>
-=======
-            <NavBar />
-            <StyledContainer>
-              <Weather />
-            </StyledContainer>
->>>>>>> origin/main
             </div>
           }
         />
@@ -104,31 +86,62 @@ function App() {
               <NavBar />
               <HomePage />
             </div>
-<<<<<<< HEAD
           }
-=======
-          }/>
-        <Route path="/signup" element={<StyledContainer><Signup signupUser={signupUser} /></StyledContainer>} />
-        <Route path="/login" element={<StyledContainer><Login /></StyledContainer>} />
-        <Route path="/dashboard" element={
-        <div>
-          <NavBar/>
-          <StyledContainer><Dashboard /></StyledContainer>
-        </div>} />
-        <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>} />
-        <Route path="/search" element={<StyledContainer><Search /></StyledContainer>} />
-        <Route path="/weather" element={
-         <div>
-         <NavBar/>
-        <StyledContainer><Weather /></StyledContainer>
-        </div>} />
-        <Route path="/home" element={
-          <div>
-            <NavBar />
-            <HomePage />
-          </div>
-        }
->>>>>>> origin/main
+        />
+        <Route
+          path="/login"
+          element={
+            <StyledContainer>
+              <Login />
+            </StyledContainer>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <div>
+              <NavBar />
+              <StyledContainer>
+                <Dashboard />
+              </StyledContainer>
+            </div>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <StyledContainer>
+              <MainHome />
+            </StyledContainer>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <StyledContainer>
+              <Search />
+            </StyledContainer>
+          }
+        />
+        <Route
+          path="/weather"
+          element={
+            <div>
+              <NavBar />
+              <StyledContainer>
+                <Weather />
+              </StyledContainer>
+            </div>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <div>
+              <NavBar />
+              <HomePage />
+            </div>
+          }
         />
       </Routes>
     </Router>
