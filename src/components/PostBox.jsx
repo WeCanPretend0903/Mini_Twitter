@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "./PostBox.css";
 import profile from '../img/profile.png'
 import profanityData from '../Data/profanity-list.json'; // file obtained from https://github.com/dsojevic/profanity-list/tree/main
@@ -11,9 +11,9 @@ function PostBox ({ onSubmit }) {
   const userInfo = userData.users.find((user) => user.id === userId);
   const [data, setData] = useState({
     user: {
-      username: "Username",
-      profilepic: profile,
-      userType: "OU",
+      username: userInfo ? userInfo.name :"Username",
+      profilepic: userInfo ? userInfo.profilePicture : profile,
+      userType: userInfo ? userInfo.userType : "Surfer",
     },
     keywords: ['', '', ''],
     content: '',
@@ -21,19 +21,6 @@ function PostBox ({ onSubmit }) {
     errorMessage: '',
     time: 0,
   });  
-  useEffect(() => {
-    const userInfo = userData.users.find((user) => user.id === userId);
-    if (userInfo) {
-      setData(prevData => ({
-        ...prevData,
-        user: {
-          username: userInfo.name,
-          profilepic: userInfo.profilePicture !== "" ? userInfo.profilePicture : profile,
-          userType: userInfo.userType,
-        },
-      }));
-    }
-  }, []);  
   const profanityList = profanityData.map(profanity => ({
     id: profanity.id,
     match: profanity.match,
@@ -110,24 +97,35 @@ function PostBox ({ onSubmit }) {
     return length;
   };
   // charge user for posting
-  const chargeUser = (amount) => {
+  const chargeUser = async (amount) => {
+    if (!userInfo) {
+      setData({ errorMessage: "Sign up to post messages." });
+      return false;
+    }
     const currentBalance = getBalance(userInfo.id);
     if (currentBalance >= amount) {
-      setBalance(userInfo.id, currentBalance - amount)
+      setBalance(userInfo.id, currentBalance - amount);
+      return true;
     } else {
       // send warning
-      setData({errorMessage: "Not sufficent funds. Head to dashboard to deposit money."});
+      setData({ ...data,errorMessage: "Not sufficent funds. Head to dashboard to deposit money." });
+      return false;
     }
   };
   // post message
-  const postMessage = () => {
+  const postMessage = async () => {
+    if (data.user.userType === "Surfer") {
+      setData({ ...data, errorMessage: "Sign up to post messages." });
+      return;
+    }
     let badWordCount = countBadWords();
     if (badWordCount > 2) {
-      setData((prevData) => ({ ...prevData, errorMessage: "Bad langauge, sending a warning."}));
+      setData({ ...data, errorMessage: "Bad langauge, sending a warning." });
       return;
     } else {
       const wordCount = countWords();
       let chargeAmount = 0;
+      let success;
       if (data.user.userType === "OU") {
         if (wordCount > 20) {
           chargeAmount = 0.1 * (wordCount - 20);
@@ -135,7 +133,10 @@ function PostBox ({ onSubmit }) {
       } else if (data.user.userType === "CU") {
         chargeAmount = wordCount;
       }
-      chargeUser(chargeAmount);
+      success = await chargeUser(chargeAmount);
+      if (!success) {
+        return;
+      }
       const postData = {
         user: data.user,
         keywords: data.keywords,

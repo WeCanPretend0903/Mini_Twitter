@@ -15,18 +15,15 @@ const Login = () => {
     const handleLogin = async (values, { setSubmitting, setFieldError }) => {
         try {
           // Find the user based on the provided email and password
-          const user = userData.users.find(
-            (u) => u.email === values.email && u.password === values.password
+          const user = userData.users.find((user) =>
+            user.email === values.email && user.password === values.password
           );
-      
           if (user) {
             // Fetch the user ID
             const userId = user.id;
-      
             // Store the user and userId in localStorage
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('userId', userId);
-      
             // Redirect to the dashboard
             navigate('/dashboard');
           } else {

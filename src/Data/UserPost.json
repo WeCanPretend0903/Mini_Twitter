@@ -1,44 +1,59 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "name": "John Doe",
-        "email": "john.doe@example.com",
-        "userType": "OU",
-        "Likes": "50",
-        "Dislike": "100"
-      },
-      {
-        "id": 2,
-        "name": "Jane Smith",
-        "email": "jane.smith@example.com",  
-        "userType": "CU",
-        "Likes": "507",
-        "Dislike": "100"
-      },
-      {
-        "id": 3,
-        "name": "Steven",
-        "email": "admin@example.com",
-        "userType": "CU",
-        "Likes": "550",
-        "Dislike": "100"
-      },
-      {
-        "id": 4,
-        "name": "User4",
-        "email": "admin@example.com",   
-        "userType": "OU",
-        "Likes": "2",
-        "Dislike": "9"
-      },
-      {
-        "id": 5,
-        "name": "User5",
-        "email": "admin@example.com", 
-        "userType": "SU",
-        "Likes": "50",
-        "Dislike": "10000000"
-      }
-    ]
-  }
+  "posts": [
+    {
+      "postId": 1,
+      "author": "John Doe",
+      "timestamp": "12/3/23 8:81PM",
+      "content": "This is John's first post!",
+      "mediaFile": null,
+      "keywords": ["Doggy", "First"],
+      "likes": 10,
+      "dislikes": 0,
+      "shares": 0
+    },
+    {
+      "postId": 2,
+      "author": "Jane Smith",
+      "timestamp": "12/3/23 9:15AM",
+      "content": "Hello, I'm Jane!",
+      "mediaFile": null,
+      "keywords": ["Introduction", "Hello"],
+      "likes": 17,
+      "dislikes": 13,
+      "shares": 0
+    },
+    {
+      "postId": 3,
+      "author": "Bob Builder",
+      "timestamp": "12/3/23 10:30AM",
+      "content": "Feeling awesome today!",
+      "mediaFile": null,
+      "keywords": [],
+      "likes": 100,
+      "dislikes": 12,
+      "shares": 2
+    },
+    {
+      "postId": 4,
+      "author": "CCNY",
+      "timestamp": "12/3/23 11:45AM",
+      "content": "Just another school day!",
+      "mediaFile": null,
+      "keywords": ["Day", "School", "Final"],
+      "likes": 2,
+      "dislikes": 9,
+      "shares": 3
+    },
+    {
+      "postId": 5,
+      "author": "Jie Wei",
+      "timestamp": "12/3/23 1:00PM",
+      "content": "Enjoying the day!",
+      "mediaFile": null,
+      "keywords": ["Enjoying", "Day"],
+      "likes": 9,
+      "dislikes": 0,
+      "shares": 0
+    }
+  ]
+}

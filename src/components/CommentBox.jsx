@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
 import './CommentBox.css';
+import userData from "../Data/UserData.json";
 
-function CommentBox ({ postID }) {
+function CommentBox () {
   // comment data
   const [comments, setComments] = useState([]);
+  const userId = 1;
+  const userInfo = userData.users.find((user) => user.id === userId);
   // get time
   const getTime = () => {
     const date = new Date();
@@ -18,8 +21,7 @@ function CommentBox ({ postID }) {
   // add comments
   const addComment = (commentText) => {
     const newComment = {
-      postID,
-      username: "Username",
+      username: userInfo.name,
       content: commentText,
       time: getTime(),
     };

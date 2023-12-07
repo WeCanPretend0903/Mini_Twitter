@@ -10,18 +10,23 @@ function Post ({
   content,
   mediaFile,
   keywords,
-  postID,
+  postId,
+  likes,
+  dislikes,
+  shares,
+  onSubmit
 }) {
   // post data
   const [postData, setPostData] = useState({
-    likes: 0,
+    likes: likes || 0,
     likeClicked: false,
-    dislikes: 0,
+    dislikes: dislikes || 0,
     dislikeClicked: false,
-    shares: 0,
+    shares: shares || 0,
     shareClicked: false,
     reportClicked: false,
     filteredContent: '',
+    trending: false
   });
   const profanityList = profanityData.map(profanity => ({
     id: profanity.id,
@@ -41,24 +46,33 @@ function Post ({
   }).join(' ');
   setPostData(prevData => ({ ...prevData, filteredContent: filtered }));
   };
+  // filter content
   useEffect(() => {
     handleFilterContent();
   }, [content]);
   // handle like button
   const handleLikeClick = () => {
+    const likesCount = postData.likeClicked ? postData.likes - 1 : postData.likes + 1;
+    const isTrending = likesCount > 10 && (likesCount - postData.dislikes) > 3;
     setPostData((prevData) => ({
       ...prevData,
       likeClicked: !prevData.likeClicked,
-      likes: !prevData.likeClicked ? prevData.likes + 1 : prevData.likes - 1,
-    }));
+      likes: likesCount,
+      trending: isTrending,
+    })); 
+    onSubmit(postId);
   };
    // handle dislike button
    const handleDislikeClick = () => {
+    const dislikesCount = postData.dislikeClicked ? postData.dislikes - 1 : postData.dislikes + 1;
+    const isTrending = postData.likes > 10 && (postData.likes - dislikesCount) > 3;
     setPostData((prevData) => ({
       ...prevData,
       dislikeClicked: !prevData.dislikeClicked,
-      dislikes: !prevData.dislikeClicked ? prevData.dislikes + 1 : prevData.dislikes - 1,
+      dislikes: dislikesCount,
+      trending: isTrending,
     }));
+    onSubmit(postId);
   };
    // handle share button
    const handleShareClick = () => {
@@ -67,7 +81,6 @@ function Post ({
       shareClicked: !prevData.shareClicked,
       shares: !prevData.shareClicked ? prevData.shares + 1 : prevData.shares - 1,
     }));
-    // recreate post with extra comment
   };
   // handle report button
   const handleReportClick = () => {
@@ -115,25 +128,29 @@ function Post ({
         </div>
         <div className="media-section">
           {mediaFile && (
-            <div className="media-preview">
-              {mediaFile.type.startsWith("video/") ? (
-                <div>
-                  <iframe
-                    id="content-video"
-                    title="Embedded Video"
-                    src={URL.createObjectURL(mediaFile)}
-                    type={mediaFile.type}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              ) : (
-                <div>
-                  <img id="content-picture" src={URL.createObjectURL(mediaFile)}alt="Media" />
-                </div>
-              )}
-            </div>
+            <div className="media-section">
+            {mediaFile && (
+              <div className="media-preview">
+                {mediaFile.type && mediaFile.type.startsWith("video/") ? (
+                  <div>
+                    <iframe
+                      id="content-video"
+                      title="Embedded Video"
+                      src={URL.createObjectURL(mediaFile)}
+                      type={mediaFile.type}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                ) : (
+                  <div>
+                    <img id="content-picture" src={URL.createObjectURL(mediaFile)} alt="Media" />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>          
           )}
         </div>
       </div>
@@ -176,7 +193,7 @@ function Post ({
         </div>
       </div>
       <div className="post-comments">
-        <CommentBox postID={postID}/>
+        <CommentBox postId={postId}/>
       </div>
   </div>
   )
