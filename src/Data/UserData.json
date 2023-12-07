@@ -11,10 +11,29 @@
       "balance": 1.50,
       "Warning_Messages": [
         {
-          "detail": "First warning message detail"
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
         },
         {
-          "detail": "Second warning message detail"
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        },
+        {
+          "id": 3,
+          "Message": "❗Invalid Input Format",
+          "detail": "The data you entered is in an incorrect format. Please follow the required format guidelines and resubmit."
+        },
+        {
+          "id": 4,
+          "Message": "❗❗System Overload Imminent",
+          "detail": "You are nearing the system's maximum capacity limit. Please reduce your usage to avoid system overload and potential data loss."
+        },
+        {
+          "id": 5,
+          "Message": "❗❗Violation of Terms of Service",
+          "detail": "Your recent activities have violated our terms of service. Continued violation may result in account suspension or termination. Please review our terms and comply accordingly."
         }
       ]
     },
@@ -26,7 +45,35 @@
       "profilePicture": "",
       "userBio": "Hi I am Jane Smith.",
       "userType": "corporate",
-      "balance": 100.75
+      "balance": 100.75,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        },
+        {
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        },
+        {
+          "id": 3,
+          "Message": "❗Invalid Input Format",
+          "detail": "The data you entered is in an incorrect format. Please follow the required format guidelines and resubmit."
+        },
+        {
+          "id": 4,
+          "Message": "❗❗System Overload Imminent",
+          "detail": "You are nearing the system's maximum capacity limit. Please reduce your usage to avoid system overload and potential data loss."
+        },
+        {
+          "id": 5,
+          "Message": "❗❗Violation of Terms of Service",
+          "detail": "Your recent activities have violated our terms of service. Continued violation may result in account suspension or termination. Please review our terms and comply accordingly."
+        }
+      ]
+      
     },
     {
       "id": 3,

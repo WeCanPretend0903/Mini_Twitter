@@ -1,41 +1,19 @@
 import React, { useState } from "react";
-import "./Warning_Message.css"; // Make sure to import your CSS
-import Data from "../Data/UserData.json";
+import "./Warning_Message.css";
+import UserData from "../Data/UserData.json";
 
-const Checklist = () => {
-  const [Warnings] = useState([]);
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      text: "Bad Language Warning",
-      checked: false,
-      details: "Details about Item 2",
-      showDetails: false,
-    },
-    {
-      id: 2,
-      text: "Fake information",
-      checked: false,
-      details: "Details about Item 2",
-      showDetails: false,
-    },
-    {
-      id: 3,
-      text: "Post advertisement",
-      checked: false,
-      details: "Details about Item 2",
-      showDetails: false,
-    },
-    // Add more items as needed
-  ]);
+const Checklist = (props) => {
+  const userWarnings =
+    UserData.users.find((user) => user.id === 1)?.Warning_Messages || [];
 
-  const toggleCheck = (id) => {
-    setItems(
-      items.map((item) =>
-        item.id === id ? { ...item, checked: !item.checked } : item
-      )
-    );
-  };
+  const [items, setItems] = useState(
+    userWarnings.map((warning, index) => ({
+      id: index + 1,
+      text: warning.Message,
+      details: warning.detail,
+      showDetails: false,
+    }))
+  );
 
   const toggleDetails = (id) => {
     setItems(
@@ -49,11 +27,6 @@ const Checklist = () => {
     <div className="checklist">
       {items.map((item) => (
         <div key={item.id} className="checklist-item">
-          <input
-            type="checkbox"
-            checked={item.checked}
-            onChange={() => toggleCheck(item.id)}
-          />
           <label onClick={() => toggleDetails(item.id)}>{item.text}</label>
           {item.showDetails && (
             <div className="item-details">{item.details}</div>

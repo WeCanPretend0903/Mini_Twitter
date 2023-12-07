@@ -22,6 +22,10 @@ const Dashboard = ({ location }) => {
   const history = useNavigate();
 
   // Unconditionally call useState for editMode, bio, dashboardUser, amount
+  const navigateToWarningPage = () => {
+    history("/warning"); // Replace '/warning' with the actual path to your warning message page
+  };
+  const [warningMessages, setWarningMessages] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [bio, setBio] = useState("Your bio or Description Goes here");
   const [dashboardUser, setDashboardUser] = useState({
@@ -34,7 +38,6 @@ const Dashboard = ({ location }) => {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const userId = Number(localStorage.getItem("userId")); // Convert to number
-
     if (!storedUser || !userId) {
       console.error("User or userId is undefined");
       history("/");
@@ -173,22 +176,22 @@ const Dashboard = ({ location }) => {
           {/* Scrollable container for warning messages */}
           <div className="warning-Messages-Container">
             <p>
-              <a href="/warning">Warning Message</a>
+              <a href="/warning">Suspicious Login Attempt Detected</a>
             </p>
             <p>
               <a href="/warning">Payment Due</a>
             </p>
             <p>
-              <a href="/warning">Due day</a>
+              <a href="/warning">Payment Processing Error</a>
             </p>
             <p>
-              <a href="/warning">Warning Message</a>
+              <a href="/warning">Invalid Input Format</a>
             </p>
             <p>
-              <a href="/warning">Warning Message</a>
+              <a href="/warning">System Overload Imminent</a>
             </p>
             <p>
-              <a href="/warning">Warning Message</a>
+              <a href="/warning">Violation of Terms of Service</a>
             </p>
             <p>
               <a href="/warning">Warning Message</a>

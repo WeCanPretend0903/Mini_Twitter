@@ -1,56 +1,46 @@
 .checklist {
-    list-style-type: none;
-    padding: 0;
-    max-width: 300px; /* Set a max-width for better layout */
-    border: 1px solid #ddd; /* Add a border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    background-color: #fff; /* Background color */
-    margin: 0 auto; /* Centering the checklist */
-    padding: 10px;
-  }
-  
-  .checklist-item {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    border-bottom: 1px solid #eee; /* Separator between items */
-  }
-  
-  .checklist-item:last-child {
-    border-bottom: none;
-  }
-  
-  .checklist-item input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  .checklist-item label {
-    cursor: pointer;
-    display: block; /* Make label take full width */
-    font-weight: bold; /* Bold text for items */
-  }
-  
-  .item-details {
-    margin-top: 5px;
-    padding-left: 25px;
-    font-style: italic;
-    color: #555;
-    border-left: 2px solid #ddd; /* Add a left border to details */
-    padding-left: 10px;
-    margin-left: 10px;
-  }
-  
-  /* Optional: Style for checked items */
-  .checklist-item input[type="checkbox"]:checked + label {
-    text-decoration: line-through;
-    color: grey;
-  }
-  
-  /* Hover effect on items */
-  .checklist-item:hover {
-    background-color: #f9f9f9;
-  }
-  
+  list-style-type: none;
+  padding: 0;
+  max-width: 600px; /* Increased max-width */
+  width: 80%; /* Make the width relative to the viewport */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 20px auto; /* Increased margin for more space around */
+  padding: 20px; /* Increased padding for more internal space */
+}
+
+.checklist-item {
+  margin-bottom: 15px; /* Slightly increased margin-bottom */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px; /* Increased padding for each item */
+  border-bottom: 1px solid #eee;
+}
+
+.checklist-item:last-child {
+  border-bottom: none;
+}
+
+.checklist-item label {
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  font-size: 1.1em; /* Slightly larger font size */
+}
+
+.item-details {
+  margin-top: 5px;
+  padding-left: 25px;
+  font-style: italic;
+  color: #555;
+  border-left: 2px solid #ddd;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.checklist-item:hover {
+  background-color: #f9f9f9;
+}
