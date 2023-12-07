@@ -175,28 +175,28 @@ const Dashboard = ({ location }) => {
           {/* Scrollable container for warning messages */}
           <div className="warning-Messages-Container">
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Warning Message</a>
             </p>
             <p>
-              <a href="/warning/1">Payment Due</a>
+              <a href="/warning">Payment Due</a>
             </p>
             <p>
-              <a href="/warning/1">Due day</a>
+              <a href="/warning">Due day</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Warning Message</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Warning Message</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Warning Message</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Warning Message</a>
             </p>
             <p>
-              <a href="/warning/1">Warning Message</a>
+              <a href="/warning">Warning Message</a>
             </p>
             {/* ... more warning messages */}
           </div>

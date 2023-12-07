@@ -8,7 +8,15 @@
       "profilePicture": "",
       "userBio": "Hi I am John Doe.",
       "userType": "OU",
-      "balance": 1.50
+      "balance": 1.50,
+      "Warning_Messages": [
+        {
+          "detail": "First warning message detail"
+        },
+        {
+          "detail": "Second warning message detail"
+        }
+      ]
     },
     {
       "id": 2,

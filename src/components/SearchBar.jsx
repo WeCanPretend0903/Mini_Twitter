@@ -5,13 +5,12 @@ import "./SearchBar.css";
 export const SearchBar = ({ setResults, data }) => {
     const [input, setInput] = useState("");
     const fetchData = (value) => {
-      const results = data.user.filter((user) => {
+      const results = data.users.filter((users) => {
         return (
           value &&
-          user &&
-          user.name &&
-          user.email &&
-          user.name.toLowerCase().includes(value)
+          users &&
+          users.name &&
+          users.name.toLowerCase().includes(value)
         );
       });
       setResults(results);
@@ -31,3 +30,7 @@ export const SearchBar = ({ setResults, data }) => {
         </div>
     );
 }
+/*Reference:
+The search function is made based on the tutorial video:
+"Make a Search Bar with React (with API Calls) | Beginners Tutorial" by Code Complete
+from Youtube, link: https://www.youtube.com/watch?v=sWVgMcz8Q44 */
