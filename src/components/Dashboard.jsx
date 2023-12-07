@@ -36,13 +36,15 @@ const Dashboard = ({ location }) => {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const userId = Number(localStorage.getItem("userId")); // Convert to number
+  
     if (!storedUser || !userId) {
       console.error("User or userId is undefined");
       history("/");
       return;
     }
-
+  
     const user = userData.users.find((user) => user.id === userId);
+  
     if (user) {
       const storedBalance = getBalance(user.id);
       setAmount(storedBalance);
@@ -52,12 +54,14 @@ const Dashboard = ({ location }) => {
         id: user.id,
       });
       setBio(user.userBio);
+      setWarningMessages(user.Warning_Messages); // Set warning messages here
     } else {
       // Handle case where user is not found
       console.error("User not found");
       history("/");
     }
   }, [history]);
+  
 
   const generateCurrency = () => {
     if (dashboardUser) {
@@ -170,36 +174,17 @@ const Dashboard = ({ location }) => {
           </StyledButton>
         </div>
         <div className="warning-Messages">
-          <h3>Warning Messages</h3>
-          {/* Scrollable container for warning messages */}
-          <div className="warning-Messages-Container">
-            <p>
-              <a href="/warning">Suspicious Login Attempt Detected</a>
-            </p>
-            <p>
-              <a href="/warning">Payment Due</a>
-            </p>
-            <p>
-              <a href="/warning">Payment Processing Error</a>
-            </p>
-            <p>
-              <a href="/warning">Invalid Input Format</a>
-            </p>
-            <p>
-              <a href="/warning">System Overload Imminent</a>
-            </p>
-            <p>
-              <a href="/warning">Violation of Terms of Service</a>
-            </p>
-            <p>
-              <a href="/warning">Warning Message</a>
-            </p>
-            <p>
-              <a href="/warning">Warning Message</a>
-            </p>
-            {/* ... more warning messages */}
-          </div>
-        </div>
+  <h3>Warning Messages</h3>
+  {/* Scrollable container for warning messages */}
+  <div className="warning-Messages-Container">
+    {warningMessages.map((warning) => (
+      <p key={warning.id}>
+        <a href="/warning">{warning.Message}</a>
+      </p>
+    ))}
+  </div>
+</div>
+
       </div>
     </div>
   );
