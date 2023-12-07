@@ -11,15 +11,11 @@ import {
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut, updateProfile } from "firebase/auth";
-import { auth } from "./firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import Logo from "../Assets/logo.png";
 import profile from "../img/profile.png";
 import userData from "../Data/UserData.json";
 import "./Dashboard.css";
 import { getBalance, setBalance } from "./localStorage";
 import NavBar from "./NavBar";
-import { Link } from "react-router-dom";
 const Dashboard = ({ location }) => {
   const history = useNavigate();
 
