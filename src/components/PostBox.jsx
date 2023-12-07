@@ -32,7 +32,7 @@ function PostBox ({ onSubmit }) {
           ...prevData,
           user: {
             username: userInfo.name,
-            profilepic: userInfo.profilePicture !== "" ? userInfo.profilePicture : profile,
+            profilepic: userInfo.profilePicture || profile,
             userType: userInfo.userType,
           },
         }));
@@ -174,6 +174,7 @@ function PostBox ({ onSubmit }) {
         keywords: data.keywords,
         content: data.content,
         mediaFile: data.mediaFile,
+        profilePicture: data.user.profilepic,
         likes: 0,
         dislikes: 0,
         shares: 0,
