@@ -1,49 +1,24 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import NavBar from "./NavBar";
-import HomePage from "./Home";
-import MainHome from "./Mainhome";
-import Login from "./Login";
-import Signup from "./SignUp";
-import Dashboard from "./Dashboard";
-import Weather from "./Weather";
-import { StyledContainer } from "./Styles";
-import { Search } from "./Search";
+import React from 'react';
+import './Comment.css';
+import profilepic from '../img/profile.png';
 
-function App() {
-  // Define the signupUser function
-  const signupUser = (user) => {
-    // Implement your signupUser logic here
-    console.log("User signed up:", user);
-  };
+function Comment({ comment }) {
+  // Use the comment's username and profile picture
+  const username = comment.username;
+  const profilePicture = comment.profilePicture !== '' ? comment.profilePicture : profilepic;
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/signup" element={<StyledContainer><Signup signupUser={signupUser} /></StyledContainer>} />
-        <Route path="/login" element={<StyledContainer><Login /></StyledContainer>} />
-        <Route path="/dashboard" element={
-        <div>
-          <NavBar/>
-          <StyledContainer><Dashboard /></StyledContainer>
-        </div>} />
-        <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>} />
-        <Route path="/search" element={<StyledContainer><Search /></StyledContainer>} />
-        <Route path="/weather" element={
-         <div>
-         <NavBar/>
-        <StyledContainer><Weather /></StyledContainer>
-        </div>} />
-        <Route path="/home" element={
-          <div>
-            <NavBar />
-            <HomePage />
-          </div>
-        }
-        />
-      </Routes>
-    </Router>
+    <div className="comment-container">
+      <div className="comment-header">
+        <img id="profile-picture" src={profilePicture} alt="Profile" />
+        <h3 id="comment-name">{username}</h3>
+        <h4 id="comment-time">{comment.time}</h4>
+      </div>
+      <div className="comment-content">
+        <p id="content">{comment.content}</p>
+      </div>
+    </div>
   );
 }
 
-export default App;
+export default Comment;
