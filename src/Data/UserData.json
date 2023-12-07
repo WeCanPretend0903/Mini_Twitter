@@ -83,7 +83,24 @@
       "profilePicture": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F10%2F05%2F22%2F37%2Fblank-profile-picture-973460_960_720.png&tbnid=GonJG9aLPTc5LM&vet=12ahUKEwjGiO-7zPaCAxVWEVkFHT2ICxoQMygAegQIARB1..i&imgrefurl=https%3A%2F%2Fpixabay.com%2Fvectors%2Fblank-profile-picture-mystery-man-973460%2F&docid=wg0CyFWNfK7o5M&w=720&h=720&q=profile%20picture&ved=2ahUKEwjGiO-7zPaCAxVWEVkFHT2ICxoQMygAegQIARB1",
       "userBio": "Admin",
       "userType": "SU",
-      "balance": 5000.00
+      "balance": 5000.00,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        },
+        {
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        },
+        {
+          "id": 3,
+          "Message": "❗Invalid Input Format",
+          "detail": "The data you entered is in an incorrect format. Please follow the required format guidelines and resubmit."
+        }
+      ]
     },
     {
       "id": 4,
@@ -93,7 +110,34 @@
       "profilePicture": "https://example.com/admin.jpg",
       "userBio": "Hi I am CCNY Corporate.",
       "userType": "CU",
-      "balance": 5000.00
+      "balance": 5000.00,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        },
+        {
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        },
+        {
+          "id": 3,
+          "Message": "❗Invalid Input Format",
+          "detail": "The data you entered is in an incorrect format. Please follow the required format guidelines and resubmit."
+        },
+        {
+          "id": 4,
+          "Message": "❗❗System Overload Imminent",
+          "detail": "You are nearing the system's maximum capacity limit. Please reduce your usage to avoid system overload and potential data loss."
+        },
+        {
+          "id": 5,
+          "Message": "❗❗Violation of Terms of Service",
+          "detail": "Your recent activities have violated our terms of service. Continued violation may result in account suspension or termination. Please review our terms and comply accordingly."
+        }
+      ]
     },
     {
       "id": 5,
@@ -103,7 +147,34 @@
       "profilePicture": "https://example.com/admin.jpg",
       "userBio": "Hello world.",
       "userType": "SU",
-      "balance": 1000.00
+      "balance": 1000.00,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        },
+        {
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        },
+        {
+          "id": 3,
+          "Message": "❗Invalid Input Format",
+          "detail": "The data you entered is in an incorrect format. Please follow the required format guidelines and resubmit."
+        },
+        {
+          "id": 4,
+          "Message": "❗❗System Overload Imminent",
+          "detail": "You are nearing the system's maximum capacity limit. Please reduce your usage to avoid system overload and potential data loss."
+        },
+        {
+          "id": 5,
+          "Message": "❗❗Violation of Terms of Service",
+          "detail": "Your recent activities have violated our terms of service. Continued violation may result in account suspension or termination. Please review our terms and comply accordingly."
+        }
+      ]
     },
     {
       "id": 6,
@@ -113,7 +184,147 @@
       "profilePicture": "https://example.com/admin.jpg",
       "userBio": "Hello world.",
       "userType": "SU",
-      "balance": 1005.00
+      "balance": 1005.00,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        },
+        {
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "user7",
+      "email": "user7@gmail.com",
+      "password": "123456",     
+      "profilePicture": "https://example.com/admin.jpg",
+      "userBio": "Hello world.",
+      "userType": "SU",
+      "balance": 1005.00,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "user8",
+      "email": "user8@gmail.com",
+      "password": "123456",     
+      "profilePicture": "https://example.com/admin.jpg",
+      "userBio": "Hello world.",
+      "userType": "SU",
+      "balance": 1005.00,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        },
+        {
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        },
+        {
+          "id": 3,
+          "Message": "❗Invalid Input Format",
+          "detail": "The data you entered is in an incorrect format. Please follow the required format guidelines and resubmit."
+        },
+        {
+          "id": 4,
+          "Message": "❗❗System Overload Imminent",
+          "detail": "You are nearing the system's maximum capacity limit. Please reduce your usage to avoid system overload and potential data loss."
+        },
+        {
+          "id": 5,
+          "Message": "❗❗Violation of Terms of Service",
+          "detail": "Your recent activities have violated our terms of service. Continued violation may result in account suspension or termination. Please review our terms and comply accordingly."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "user9",
+      "email": "user9@gmail.com",
+      "password": "123456",     
+      "profilePicture": "https://example.com/admin.jpg",
+      "userBio": "Hello world.",
+      "userType": "SU",
+      "balance": 1005.00,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        },
+        {
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        },
+        {
+          "id": 3,
+          "Message": "❗Invalid Input Format",
+          "detail": "The data you entered is in an incorrect format. Please follow the required format guidelines and resubmit."
+        },
+        {
+          "id": 4,
+          "Message": "❗❗System Overload Imminent",
+          "detail": "You are nearing the system's maximum capacity limit. Please reduce your usage to avoid system overload and potential data loss."
+        },
+        {
+          "id": 5,
+          "Message": "❗❗Violation of Terms of Service",
+          "detail": "Your recent activities have violated our terms of service. Continued violation may result in account suspension or termination. Please review our terms and comply accordingly."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "user10",
+      "email": "user10@gmail.com",
+      "password": "123456",     
+      "profilePicture": "https://example.com/admin.jpg",
+      "userBio": "Hello world.",
+      "userType": "SU",
+      "balance": 1005.00,
+      "Warning_Messages": [
+        {
+          "id": 1,
+          "Message": "❗Suspicious Login Attempt Detected",
+          "detail": "We've noticed a login attempt from an unrecognized device or location. Please verify if this was you. If not, change your password immediately and secure your account."
+        },
+        {
+          "id": 2,
+          "Message": "❗❗Payment Processing Error",
+          "detail": "Your recent payment attempt has failed. Please check your payment details or try a different payment method. Ensure sufficient funds are available."
+        },
+        {
+          "id": 3,
+          "Message": "❗Invalid Input Format",
+          "detail": "The data you entered is in an incorrect format. Please follow the required format guidelines and resubmit."
+        },
+        {
+          "id": 4,
+          "Message": "❗❗System Overload Imminent",
+          "detail": "You are nearing the system's maximum capacity limit. Please reduce your usage to avoid system overload and potential data loss."
+        },
+        {
+          "id": 5,
+          "Message": "❗❗Violation of Terms of Service",
+          "detail": "Your recent activities have violated our terms of service. Continued violation may result in account suspension or termination. Please review our terms and comply accordingly."
+        }
+      ]
     }
   ]
 }

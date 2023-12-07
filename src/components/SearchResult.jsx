@@ -12,7 +12,7 @@ export const SearchResult = ({ result }) => {
     };
     return (
         //change this to the link to post or user
-        <Link to="/home" style={linkStyle}>
+        <Link to="/result" style={linkStyle}>
         <div className="searchResult">
           {result}
         </div>

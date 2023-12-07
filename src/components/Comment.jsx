@@ -6,7 +6,6 @@ function Comment({ comment }) {
   // Use the comment's username and profile picture
   const username = comment.username;
   const profilePicture = comment.profilePicture !== '' ? comment.profilePicture : profilepic;
-
   return (
     <div className="comment-container">
       <div className="comment-header">
