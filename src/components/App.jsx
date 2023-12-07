@@ -6,10 +6,9 @@ import MainHome from './Mainhome';
 import Login from './Login';
 import Signup from './SignUp';
 import Dashboard from './Dashboard';
-import Profile from './profile'
+import Weather from './Weather';
 import { StyledContainer } from './Styles';
 import { Search } from './Search';
-
 function App() {
   // Define the signupUser function
   const signupUser = (user) => {
@@ -22,17 +21,32 @@ function App() {
       <Routes>
         <Route path="/signup" element={<StyledContainer><Signup signupUser={signupUser} /></StyledContainer>} />
         <Route path="/login" element={<StyledContainer><Login /></StyledContainer>} />
-        <Route path="/dashboard" element={<StyledContainer><Dashboard /></StyledContainer>} />
-        <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>} />
-        <Route path="/search" element={<StyledContainer><Search /></StyledContainer>} />
-        <Route path="/home" element={
-          <div>
-            <NavBar />
-            <HomePage />
-          </div>
-        }
-        />
-      </Routes>
+        <Route path="/dashboard" element={
+        <div>
+          <NavBar/>
+          <StyledContainer><Dashboard /></StyledContainer>
+        </div>
+      } />
+      <Route path="/" element={<StyledContainer><MainHome /></StyledContainer>} />
+      <Route path="/search" element={
+        <div>
+          <NavBar/>
+          <StyledContainer><Search /></StyledContainer>
+        </div>
+      } />
+      <Route path="/weather" element={
+        <div>
+          <NavBar/>
+          <StyledContainer><Weather /></StyledContainer>
+        </div>
+      } />
+      <Route path="/home" element={
+        <div>
+          <NavBar />
+          <HomePage />
+        </div>
+      } />
+    </Routes>
     </Router>
   );
 }

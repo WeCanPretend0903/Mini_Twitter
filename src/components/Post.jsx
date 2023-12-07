@@ -54,25 +54,27 @@ function Post ({
   const handleLikeClick = () => {
     const likesCount = postData.likeClicked ? postData.likes - 1 : postData.likes + 1;
     const isTrending = likesCount > 10 && (likesCount - postData.dislikes) > 3;
+    console.log(isTrending);
     setPostData((prevData) => ({
       ...prevData,
       likeClicked: !prevData.likeClicked,
       likes: likesCount,
       trending: isTrending,
     })); 
-    onSubmit(postId);
+    onSubmit(postId, isTrending);
   };
    // handle dislike button
    const handleDislikeClick = () => {
     const dislikesCount = postData.dislikeClicked ? postData.dislikes - 1 : postData.dislikes + 1;
     const isTrending = postData.likes > 10 && (postData.likes - dislikesCount) > 3;
+    console.log(isTrending);
     setPostData((prevData) => ({
       ...prevData,
       dislikeClicked: !prevData.dislikeClicked,
       dislikes: dislikesCount,
       trending: isTrending,
     }));
-    onSubmit(postId);
+    onSubmit(postId, isTrending);
   };
    // handle share button
    const handleShareClick = () => {

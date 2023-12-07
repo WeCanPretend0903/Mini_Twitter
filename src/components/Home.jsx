@@ -4,13 +4,15 @@ import Post from './Post';
 import './Home.css';
 import dog from '../img/dog.jpeg';
 import profile from '../img/profile.png';
-import postData from '../Data/UserPost.json';
+import { getPosts, setPosts, addPost, setInitialPosts, removePost} from "./localStorage";
 import userData from '../Data/UserData.json'
+
 
 const HomePage = () => {
   // database for post
   const [posts, setPosts] = useState([]);
   const [trending, setTrending] = useState([]);
+  const [isInitialized, setIsInitialized] = useState(false); 
   // check if post is trending
   const isTrending = (post) => {
     if (post && post.postData) {
@@ -23,38 +25,45 @@ const HomePage = () => {
   };  
   useEffect(() => {
     const fetchPosts = () => {
-      const posts = postData.posts.map(post => {
-        const user = userData.users.find(user => user.name === post.author);
+      if (!isInitialized) {
+        setInitialPosts();
+        setIsInitialized(true);
+      }
+      const postsData = getPosts();
+      const postsWithUserData = postsData.map((post) => {
+        const user = userData.users.find((u) => u.name === post.author);
         return {
           ...post,
           username: user ? user.name : 'Username',
           profilepic: user ? user.profilePicture : '',
         };
       });
-      const regularPosts = posts.filter(post => !isTrending(post));
-      const trendingPosts = posts.filter(post => isTrending(post));
+      const regularPosts = postsWithUserData.filter(post => !isTrending(post));
+      const trendingPosts = postsWithUserData.filter(post => isTrending(post));
       setPosts(regularPosts);
       setTrending(trendingPosts);
       };
       fetchPosts();
-    }, []);
+    }, [isInitialized]);
   // add new post to page
-  const addPost = (newPost) => {
+  const updatePost = (newPost) => {
     setPosts((prevPosts) => [newPost, ...prevPosts]);
+    addPost(newPost);
   };
   // handle trending post
-  const handleLikeChange = (postId) => {
+  const handleLikeChange = (postId, trendStatus) => {
     const post = posts.find(post => post.postId === postId);
-    if (post && isTrending(post)) {
+    console.log(post.postId, trendStatus);
+    if (post && trendStatus) {
       const regularPosts = posts.filter(post => post.postId !== postId);
       setPosts(regularPosts);
       setTrending(prevTrending => [post, ...prevTrending]);
       return
     }
     const trendingPost = trending.find(post => post.postId === postId);
-    if (trendingPost && !isTrending(trendingPost)) {
+    if (trendingPost && !trendStatus) {
       const trendingPosts = trending.filter(post => post.postID !== postId);
-      setTrending(trendingPost);
+      setTrending(trendingPosts);
       setPosts(prevPost => [trendingPost, ...prevPost]);
       return
     }
@@ -62,7 +71,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <div className="posts-section">
-        <PostBox onSubmit={addPost}/>
+        <PostBox onSubmit={updatePost}/>
         <h2 id="section-heading">Your Posts</h2>
         <div className="posts">
         {posts.map((post) => (
@@ -78,7 +87,7 @@ const HomePage = () => {
               likes={post.likes}
               dislikes={post.dislikes}
               shares={post.shares}
-              onSubmit={(postId) => handleLikeChange(postId)}
+              onSubmit={(postId, trending) => handleLikeChange(postId, trending)}
             />
           ))}
           <Post 
@@ -87,14 +96,14 @@ const HomePage = () => {
             timestamp="12/3/23 1:27PM"
             content="Happy doggy birthday!!!"
             keywords={['birthday', 'dog']}
-            onSubmit={(postId) => handleLikeChange(postId)}
+            onSubmit={(postId, trending) => handleLikeChange(postId, trending)}
           />
           <Post 
             username="Steve"
             profilepic={profile}
             timestamp="12/3/23 1:30PM"
             content="Hello world!!!"
-            onSubmit={(postId) => handleLikeChange(postId)}
+            onSubmit={(postId, trending) => handleLikeChange(postId, trending)}
           />
         </div>
       </div>
@@ -114,7 +123,7 @@ const HomePage = () => {
               likes={post.likes}
               dislikes={post.dislikes}
               shares={post.shares}
-              onSubmit={(postId, trending) => handleLikeChange(postId, trending)}
+              onSubmit={(postId, trendStatus) => handleLikeChange(postId, trendStatus)}
             />
           ))}
         </div>

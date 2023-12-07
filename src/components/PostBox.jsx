@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./PostBox.css";
 import profile from '../img/profile.png'
 import profanityData from '../Data/profanity-list.json'; // file obtained from https://github.com/dsojevic/profanity-list/tree/main
 import userData from "../Data/UserData.json";
 import { getBalance, setBalance } from './localStorage';
+import { useNavigate } from 'react-router';
 
 function PostBox ({ onSubmit }) {
   // post data
-  const userId = 1;
-  const userInfo = userData.users.find((user) => user.id === userId);
+  const history = useNavigate();
+  let user = null;
   const [data, setData] = useState({
     user: {
-      username: userInfo ? userInfo.name :"Username",
-      profilepic: userInfo ? userInfo.profilePicture : profile,
-      userType: userInfo ? userInfo.userType : "Surfer",
+      username: "Username",
+      profilepic:  profile,
+      userType: "Surfer",
     },
     keywords: ['', '', ''],
     content: '',
@@ -21,6 +22,27 @@ function PostBox ({ onSubmit }) {
     errorMessage: '',
     time: 0,
   });  
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const userId = Number(localStorage.getItem('userId')); // Convert to number
+    if (!storedUser || !userId) {
+      console.error('User or userId is undefined');
+      history('/');
+      return;
+    }
+    const userInfo = userData.users.find((user) => user.id === userId);
+    if (userInfo) {
+      setData(prevData => ({
+        ...prevData,
+        user: {
+          username: userInfo.name,
+          profilepic: userInfo.profilePicture !== "" ? userInfo.profilePicture : profile,
+          userType: userInfo.userType,
+        },
+      }));
+      user = userInfo;
+    }
+  }, []);
   const profanityList = profanityData.map(profanity => ({
     id: profanity.id,
     match: profanity.match,
@@ -98,13 +120,13 @@ function PostBox ({ onSubmit }) {
   };
   // charge user for posting
   const chargeUser = async (amount) => {
-    if (!userInfo) {
+    if (!user) {
       setData({ errorMessage: "Sign up to post messages." });
       return false;
     }
-    const currentBalance = getBalance(userInfo.id);
+    const currentBalance = getBalance(user.id);
     if (currentBalance >= amount) {
-      setBalance(userInfo.id, currentBalance - amount);
+      setBalance(user.id, currentBalance - amount);
       return true;
     } else {
       // send warning
@@ -147,9 +169,9 @@ function PostBox ({ onSubmit }) {
       onSubmit(postData);
       setData({
         user: {
-          username: userData ? userInfo.name : "Username",
-          profilepic: userInfo && userInfo.profilePicture !== "" ? userInfo.profilePicture : profile,
-          userType: userData ? userInfo.userType : "Surfer",
+          username: user ? user.name : "Username",
+          profilepic: user && user.profilePicture !== "" ? user.profilePicture : profile,
+          userType: userData ? user.userType : "Surfer",
         },
         keywords: ['', '', ''],
         content: '',
