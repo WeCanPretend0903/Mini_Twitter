@@ -103,6 +103,17 @@
 .warning-Messages-Container p {
   margin-bottom: 30px;
 }
+.Title{
+  margin-top: auto;
+}
+.userTitle{
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-size: 40px;
+}
 
 
 
