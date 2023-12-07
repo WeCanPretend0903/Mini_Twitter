@@ -57,6 +57,16 @@
       "userBio": "Hello world.",
       "userType": "SU",
       "balance": 1000.00
+    },
+    {
+      "id": 6,
+      "name": "reaganD",
+      "email": "reagand@gmail.com",
+      "password": "123456",     
+      "profilePicture": "https://example.com/admin.jpg",
+      "userBio": "Hello world.",
+      "userType": "SU",
+      "balance": 1005.00
     }
   ]
 }

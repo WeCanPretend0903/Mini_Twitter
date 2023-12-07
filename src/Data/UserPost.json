@@ -39,6 +39,22 @@
         "userType": "SU",
         "Likes": "50",
         "Dislike": "10000000"
+      },
+      {
+        "id": 6,
+        "name": "User6",
+        "email": "admin@example.com", 
+        "userType": "OU",
+        "Likes": "500",
+        "Dislike": "23"
+      },
+      {
+        "id": 7,
+        "name": "User7",
+        "email": "admin@example.com", 
+        "userType": "OU",
+        "Likes": "5009",
+        "Dislike": "54"
       }
     ]
   }
