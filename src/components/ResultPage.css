@@ -1,0 +1,43 @@
+.ResultPage {
+    margin: 0;
+    background: rgb(239, 239, 239);
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.searchHeading {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.pageContainer {
+    padding: 10px;
+    
+}
+  
+.searchBarContainer1 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+}
+
+.logoContainer1 {
+    margin-right: 10px;
+}
+
+.logo1 {
+    max-width: 100%;
+    max-height: 38px;
+    width: auto;
+    border-radius: 10px;
+}
+
+.SearchBar1 {
+    width: 100%;
+}
+  
