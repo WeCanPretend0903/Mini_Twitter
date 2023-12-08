@@ -131,10 +131,10 @@ function PostBox ({ onSubmit }) {
     }
   };
   // check for ad links
-  const checkAds = () => {
-    const urlRegex = /(?:https?:\/\/)?([^\s]+)/;
-    return urlRegex.test(data.content);
-  };
+  const checkAds = (content) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/;
+    return urlRegex.test(content);
+  };  
   // post message
   const postMessage = async () => {
     if (data.user.userType === "Surfer") {
@@ -148,7 +148,8 @@ function PostBox ({ onSubmit }) {
     } else {
       const wordCount = countWords();
       if (wordCount === 0) {
-        setData({ ...data, errorMessage: "No message to post." })
+        setData({ ...data, errorMessage: "No message to post." });
+        return;
       }
       let chargeAmount = 0;
       let success;
@@ -156,7 +157,7 @@ function PostBox ({ onSubmit }) {
         if (wordCount > 20) {
           chargeAmount = 0.1 * (wordCount - 20);
         }
-        if (checkAds()) {
+        if (checkAds(data.content)) {
           setData({ ...data, errorMessage: "Posting ads, sending a warning." });
           chargeUser(10);
           // send warning
